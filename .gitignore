@@ -5,6 +5,10 @@
 # Session Data files
 .RData
 
+# Temp files
+/bd
+/lists
+
 # User-specific files
 .Ruserdata
 

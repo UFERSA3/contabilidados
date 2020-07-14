@@ -25,16 +25,20 @@ cntdd.lista <- function(){
   cat("\n")
 }
 
-cntdd.carregaPacotes <- function (pcts = c("dplyr", "data.table", "readxl",
-                                     "tseries", "ggplot2", "ggrepel" )){
+cntdd.carregaPacotes <- function (
+  pcts = c("dplyr", "data.table", "readxl",
+           "tseries", "ggplot2", "ggrepel",
+           "quantmod")){
   
-  ################ Instruções #####################################################
-  # Objetivo: Carregar um pacote. Caso não exista, instala e carrega
-  # Informa um vetor com os pacotes a serem instalados
-  # Se nada informado, por padrão, instala os pacotes necessarios aos demais
-  # codigos do contabilidados
-  # Esses pacotes são necessários para manipulação de dados
-  #################################################################################
+# # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Objetivo: Carregar um pacote. Caso não exista, instala e carrega
+# Informa um vetor com os pacotes a serem instalados
+# Se nada informado, por padrão, instala os pacotes necessarios aos demais
+# codigos do contabilidados
+# Esses pacotes são necessários para manipulação de dados
+# 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  #
   
   for (i in pcts) {
     if (!require(i, character.only = T)) {
