@@ -1,5 +1,3 @@
-# UFERSA3 - Liga de Mercado Financeiro da UFERSA #-#-#-#-#-#-#-#-#-#-#-#-#-#
-# Acompanhamento do desempenho das carteiras semanais da UFERSA3  #-#-#-#-#
 
 cntdd.Carteira.GeraRetornos <- function(
   semana = 1,
