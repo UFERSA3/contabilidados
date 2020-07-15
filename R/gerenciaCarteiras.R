@@ -43,7 +43,7 @@ setwd("C:\\Users\\kleber\\Dropbox\\Xtemp\\minhapasta")
   # apenas uma vez, quando ela é definida
   # na planilha
 
-cntdd.Carteira.GeraRetornos(2)
+cntdd.Carteira.GeraRetornos(1)
 
 
 # Gerar as séries diárias

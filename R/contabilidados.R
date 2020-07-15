@@ -28,7 +28,7 @@ cntdd.lista <- function(){
 cntdd.carregaPacotes <- function (
   pcts = c("dplyr", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
-           "quantmod")){
+           "quantmod", "PerformanceAnalytics")){
   
 # # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
