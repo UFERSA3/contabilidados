@@ -298,6 +298,30 @@ rm(mes.nome)
 
 
 
+ufsRegiao <-
+  data.frame(
+    uf = c("DF", "GO", "MS", "MT", "CE", "AL", "BA", "MA", "PB", "PE", "PI",
+           "RN", "SE", "AC", "AM", "AP", "PA", "RO", "RR", "TO", "RJ", "ES",
+           "MG", "SP", "PR", "RS", "SC", "EX", "BR"),
+    descUF = c("Distrito Federal", "Goiás", "Mato Grosso do Sul",
+               "Mato Grosso", "Ceará", "Alagoas", "Bahia", "Maranhão",
+               "Paraíba", "Pernambuco", "Piauí", "Rio Grande do Norte",
+               "Sergipe", "Acre", "Amazonas", "Amapá", "Pará", "Rondônia",
+               "Roraima", "Tocantins", "Rio de Janeiro", "Espírito Santo",
+               "Minas Gerais", "São Paulo", "Paraná", "Rio Grande do Sul",
+               "Santa Catarina", "Exército", "Multiplos Estados"),
+    codRegiao = c("CO", "CO", "CO", "CO", "NE", "NE", "NE", "NE", "NE", "NE",
+                  "NE", "NE", "NE", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+                  "SD", "SD", "SD", "SD", "SU", "SU", "SU", "FAB", "BR"),
+    regiao = c("Centro-Oeste", "Centro-Oeste", "Centro-Oeste", "Centro-Oeste",
+               "Nordeste", "Nordeste", "Nordeste", "Nordeste", "Nordeste",
+               "Nordeste", "Nordeste", "Nordeste", "Nordeste", "Norte",
+               "Norte", "Norte", "Norte", "Norte", "Norte", "Norte",
+               "Sudeste", "Sudeste", "Sudeste", "Sudeste", "Sul", "Sul",
+               "Sul", "Brasil", "Multiplos Estados")
+  )
+
+
 
 ################ Instruções #####################################################
 # Objetivo: Gerar uma tabela de correlacao com identificação da significância
@@ -307,12 +331,12 @@ rm(mes.nome)
 # http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 #################################################################################
 
-corstars <- function(x, method=c("pearson", "spearman"),
+cntdd.corstars <- function(x, method=c("pearson", "spearman"),
                      removeTriangle=c("upper", "lower"),
                      result=c("none", "html", "latex"),
                      digits = 4){
   #Compute correlation matrix
-  require(Hmisc)
+  require(Hmisc, warn.conflicts = F)
   x <- as.matrix(x)
   correlation_matrix<-rcorr(x, type=method[1])
   R <- correlation_matrix$r # Matrix of correlation coeficients
