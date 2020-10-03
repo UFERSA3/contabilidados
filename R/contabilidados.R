@@ -26,7 +26,7 @@ cntdd.lista <- function(){
 }
 
 cntdd.carregaPacotes <- function (
-  pcts = c("dplyr", "data.table", "readxl",
+  pcts = c("tidyverse", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
            "quantmod", "PerformanceAnalytics")){
   
@@ -43,7 +43,8 @@ cntdd.carregaPacotes <- function (
   for (i in pcts) {
     if (!require(i, character.only = T)) {
       install.packages(i)
-      require(i, character.only = T, quietly = T)
+      suppressWarnings(suppressMessages(
+        require(i, character.only = T, quietly = T)))
     }
   }
 }
