@@ -28,7 +28,8 @@ cntdd.lista <- function(){
 cntdd.carregaPacotes <- function (
   pcts = c("tidyverse", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
-           "quantmod", "PerformanceAnalytics")){
+           "quantmod", "PerformanceAnalytics",
+           "jsonlite")){
   
 # # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -381,3 +382,25 @@ cntdd.corstars <- function(x, method=c("pearson", "spearman"),
   }
 } 
 
+
+
+################ Instruções #####################################################
+# Objetivo: Baixar series temporais do gerenciador do Banco Central
+# 
+# Input: Código da série no SGS/BACEN
+# Output: data.frame com a série
+# 
+# Baseado de:
+# https://gabrielrega.com/2017/07/26/baixando-series-diretamente-do-sgs-do-banco-central-pelo-r/
+#################################################################################
+
+cntdd.baixaBCB <- function(codSerie, inicio = "01/01/2001"){
+  fromJSON(
+    paste0(
+      "http://api.bcb.gov.br/dados/serie/bcdata.sgs.",
+      codSerie, 
+      "/dados?formato=json&amp;dataInicial=",
+      inicio
+    )
+  )
+}
