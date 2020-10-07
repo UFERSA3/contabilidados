@@ -41,7 +41,8 @@ cntdd.carregaPacotes <- function (
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  #
   
   for (i in pcts) {
-    if (!require(i, character.only = T)) {
+    if (suppressWarnings(suppressMessages(
+      !require(i, character.only = T, quietly = T)))) {
       install.packages(i)
       suppressWarnings(suppressMessages(
         require(i, character.only = T, quietly = T)))
