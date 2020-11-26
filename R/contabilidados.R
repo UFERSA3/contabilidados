@@ -411,7 +411,7 @@ cntdd.baixaBCB <- function(codSerie, inicio = "01/01/2001"){
 
 
 
-TesteMedia <- function(a, b, pvalor = 0.05){
+cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
   
 ################ Instruções #####################################################
 # Objetivo: Gerar uma tabela com resultados de teste de media
