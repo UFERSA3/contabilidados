@@ -56,19 +56,19 @@ cntdd.carregaPacotes()
 
 cntdd.BaixaDados <- function (Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date", 
                         ClassValue = "numeric") {
-  ################ Instruções #####################################################
-  # Objetivo: Baixar dados da aba de uma planilha coletados por meio de matrix
-  #           do economatica
-  #           
-  # Nome: Informe o nome da variável coletada no matrix do economatica
-  # PathFile: Informe o caminho do arquivo xlsx onde está o matrix do economatica
-  # Periodo: Informe "trim" para trimestre, "data" para data, "ano" para ano, etc.
-  # Planilha: Informe o número da planilha ou nome da aba que contém o matrix
-  # ClassPeriodo: Por padrão é formato data, mas se no matrix o período contiver
-  #               letras, informar "text" para indicar ser um texto (string)
-  # ClassValue: Por padrão é formato numérico, mas se os dados coletados forem
-  #             texto (nome do sócio, por exemplo), infomar "text".
-  #################################################################################
+################ Instruções #####################################################
+# Objetivo: Baixar dados da aba de uma planilha coletados por meio de matrix
+#           do economatica
+#           
+# Nome: Informe o nome da variável coletada no matrix do economatica
+# PathFile: Informe o caminho do arquivo xlsx onde está o matrix do economatica
+# Periodo: Informe "trim" para trimestre, "data" para data, "ano" para ano, etc.
+# Planilha: Informe o número da planilha ou nome da aba que contém o matrix
+# ClassPeriodo: Por padrão é formato data, mas se no matrix o período contiver
+#               letras, informar "text" para indicar ser um texto (string)
+# ClassValue: Por padrão é formato numérico, mas se os dados coletados forem
+#             texto (nome do sócio, por exemplo), infomar "text".
+#################################################################################
   
     a <- ncol(read_xlsx(PathFile, sheet = Planilha, skip = 1, 
                       na = "-"))
@@ -94,11 +94,11 @@ cntdd.BaixaDadosReuters <- function (Nome, PathFile, Planilha, RANGE = "P:R", SK
 
 cntdd.mediaGeometrica <- function(x){
 
-  ################ Instruções #####################################################
-  # Objetivo: Gerar a média geométrica do vetor informado
-  # Informa um vetor com os números que comporão a média
-  # Valores NA serão desconsiderados
-  #################################################################################
+################ Instruções #####################################################
+# Objetivo: Gerar a média geométrica do vetor informado
+# Informa um vetor com os números que comporão a média
+# Valores NA serão desconsiderados
+#################################################################################
   
   round(prod(x, na.rm = T)^(1/length(x[!is.na(x)])), 3)
 }
@@ -106,34 +106,34 @@ cntdd.mediaGeometrica <- function(x){
 cntdd.baixaPrecos <- function(nome = "precos", x = "^BVSP", inicio = Sys.Date()-30,
                         fim = Sys.Date()-1, freq = "d"){
   
-  ################ Instruções #####################################################
-  # Objetivo: Baixar precos de papeis negociados na bolsa e gerar grafico.
-  # Informa o nome do objeto que pretende criar e escolhe os papeis desejados,
-  # período e frequencia dos dados, conforme exemplo abaixo:
-  # 
-  #           cntdd.baixaPrecos(nome = "precos",
-  #                             x = c("RADL3.SA", "PETR3.SA", "^BVSP"),
-  #                             inicio = "2010-01-01",
-  #                             fim = "2010-01-31",
-  #                             freq = "d")
-  # 
-  # nome: Nome do objeto a ser criado no environment do R. Se nada informado,
-  #       o padrao eh "precos".
-  # x = Vetor com os papeis de interesse na serie de precos. Se nada informado,
-  #     o padrao eh o indice bovespa "^BVSP".
-  # inicio: Data inicial no formato "yyyy-mm-dd". Se nada informado, o padrao
-  #         eh 30 dias anteriores a data do sistema.
-  # fim: Data final no formato "yyyy-mm-dd". Se nada informado, o padrao eh o dia
-  #      anterior a data do sistema.
-  # freq: informar "d" para frequencia diaria dos precos ou "m" para mensal. Se
-  #       nada informado, o padrao eh diario ("d")
-  # 
-  # Obs.: Ao final eh plotado um grafico com os valores dos retornos na base 100
-  #       com benchmark na data de inicio da serie. A analise consiste em observar
-  #       o comportamento do retorno de cada papel do inicio da serie (quando
-  #       todos estao com mesmo valor - 100) ate a data final. Serve para comparar
-  #       o desempenho de cada papel no periodo informado.
-  #################################################################################
+################ Instruções #####################################################
+# Objetivo: Baixar precos de papeis negociados na bolsa e gerar grafico.
+# Informa o nome do objeto que pretende criar e escolhe os papeis desejados,
+# período e frequencia dos dados, conforme exemplo abaixo:
+# 
+#           cntdd.baixaPrecos(nome = "precos",
+#                             x = c("RADL3.SA", "PETR3.SA", "^BVSP"),
+#                             inicio = "2010-01-01",
+#                             fim = "2010-01-31",
+#                             freq = "d")
+# 
+# nome: Nome do objeto a ser criado no environment do R. Se nada informado,
+#       o padrao eh "precos".
+# x = Vetor com os papeis de interesse na serie de precos. Se nada informado,
+#     o padrao eh o indice bovespa "^BVSP".
+# inicio: Data inicial no formato "yyyy-mm-dd". Se nada informado, o padrao
+#         eh 30 dias anteriores a data do sistema.
+# fim: Data final no formato "yyyy-mm-dd". Se nada informado, o padrao eh o dia
+#      anterior a data do sistema.
+# freq: informar "d" para frequencia diaria dos precos ou "m" para mensal. Se
+#       nada informado, o padrao eh diario ("d")
+# 
+# Obs.: Ao final eh plotado um grafico com os valores dos retornos na base 100
+#       com benchmark na data de inicio da serie. A analise consiste em observar
+#       o comportamento do retorno de cada papel do inicio da serie (quando
+#       todos estao com mesmo valor - 100) ate a data final. Serve para comparar
+#       o desempenho de cada papel no periodo informado.
+#################################################################################
   
   LISTA <- toupper(x)
   dados <- list()
@@ -169,38 +169,38 @@ cntdd.baixaPrecos <- function(nome = "precos", x = "^BVSP", inicio = Sys.Date()-
 
 cntdd.variosMatrix <- function(Arquivo, SeqVarPlan, index = c("cod", "trim"), clsPer = "text", clsVlr = "numeric"){
   
-  ################ Instruções #####################################################
-  # Objetivo: Criar vetores com base em abas do excel coletadas no economatica por
-  #           meio de matrix.
-  # Apos salvar cada variavel de interesse em uma aba do excel no formato
-  # matrix do economatica, aplica essa funcao, conforme exemplo:
-  # 
-  #     cntdd.variosMatrix(Arquivo = "Caminho/Arquivo.xlsx",
-  #                        SeqVarPlan = c("atvTot", "patLiq"),
-  #                        index = c("cod", "ano"),
-  #                        clsPer = "numeric", clsVlr = "numeric")
-  #
-  # Arquivo: Informe o caminho do arquivo com sua extensão xlsx
-  # SeqVarPlan: Crie um vetor com o nome de cada variavel coletada na sequencia
-  #             das abas do arquivo em excel 
-  # index: Informar sempre cod e, no período, colocar conforme a frequencia
-  #        coletada (ano, trimestre, mes, data). Serve para nomear as colunas,
-  #        portanto, outros valores tambem sao aceitos
-  # clsPer: Informa a classe do período. Quando Data e mês, informa "date";
-  #         Quando ano, informa "numeric" e quando trimestre, informa "text".
-  # clsVlr: O padrao eh numerico, porem se for coletado algum dado com texto,
-  #         como o nome do acionista, coloca "text".
-  #         
-  # Obs.: Ao final eh demonstrada uma auditoria identificando o nome dado pelo
-  #       usuario para cada variavel e o cabecalho da planilha com o nome da
-  #       variavel coletada no economatica. Serve para saber se a sequencia dada
-  #       pelo usuario realmente reflete a sequencia das abas da planilha
-  #
-  # A função 'cntdd.uneMatrix' une todos os vetores criados por essa funcao.
-  # Entao se usar essa funcao, o usuario tera cada variavel da planilha em um
-  # vetor separado. Caso queira todas as variaveis em formato painel, eh
-  # preferivel usar a funcao 'cntdd.uneMatrix.
-  #################################################################################
+################ Instruções #####################################################
+# Objetivo: Criar vetores com base em abas do excel coletadas no economatica por
+#           meio de matrix.
+# Apos salvar cada variavel de interesse em uma aba do excel no formato
+# matrix do economatica, aplica essa funcao, conforme exemplo:
+# 
+#     cntdd.variosMatrix(Arquivo = "Caminho/Arquivo.xlsx",
+#                        SeqVarPlan = c("atvTot", "patLiq"),
+#                        index = c("cod", "ano"),
+#                        clsPer = "numeric", clsVlr = "numeric")
+#
+# Arquivo: Informe o caminho do arquivo com sua extensão xlsx
+# SeqVarPlan: Crie um vetor com o nome de cada variavel coletada na sequencia
+#             das abas do arquivo em excel 
+# index: Informar sempre cod e, no período, colocar conforme a frequencia
+#        coletada (ano, trimestre, mes, data). Serve para nomear as colunas,
+#        portanto, outros valores tambem sao aceitos
+# clsPer: Informa a classe do período. Quando Data e mês, informa "date";
+#         Quando ano, informa "numeric" e quando trimestre, informa "text".
+# clsVlr: O padrao eh numerico, porem se for coletado algum dado com texto,
+#         como o nome do acionista, coloca "text".
+#         
+# Obs.: Ao final eh demonstrada uma auditoria identificando o nome dado pelo
+#       usuario para cada variavel e o cabecalho da planilha com o nome da
+#       variavel coletada no economatica. Serve para saber se a sequencia dada
+#       pelo usuario realmente reflete a sequencia das abas da planilha
+#
+# A função 'cntdd.uneMatrix' une todos os vetores criados por essa funcao.
+# Entao se usar essa funcao, o usuario tera cada variavel da planilha em um
+# vetor separado. Caso queira todas as variaveis em formato painel, eh
+# preferivel usar a funcao 'cntdd.uneMatrix.
+#################################################################################
   
   # Unir diversas variaveis coletadas em matrix (economatica) para o
   # formato painel  
@@ -224,10 +224,10 @@ cntdd.variosMatrix <- function(Arquivo, SeqVarPlan, index = c("cod", "trim"), cl
 
 cntdd.limpaMatrix <- function(){
   
-  ################ Instruções #####################################################
-  # Objetivo: Limpar objetos temporarios criados durante a uniao de matrix por
-  #           meio da funcao 'cntdd.uneMatrix'. Eh executado automaticamente.
-  #################################################################################
+################ Instruções #####################################################
+# Objetivo: Limpar objetos temporarios criados durante a uniao de matrix por
+#           meio da funcao 'cntdd.uneMatrix'. Eh executado automaticamente.
+#################################################################################
   
   rm(list = ls(envir = .GlobalEnv)[ls(envir = .GlobalEnv) %in% c(listaVar, "listaVar", "bds")],
      envir = .GlobalEnv)
@@ -235,32 +235,32 @@ cntdd.limpaMatrix <- function(){
 
 cntdd.uneMatrix <- function(Arquivo, SeqVarPlan, index, clsPer, clsVlr){
   
-  ################ Instruções #####################################################
-  # Objetivo: Transformar em painel variaveis coletadas em matrix (Economatica)
-  # Apos salvar cada variavel de interesse em uma aba do excel no formato
-  # matrix do economatica, aplica essa funcao, conforme exemplo:
-  # 
-  #     cntdd.uneMatrix(Arquivo = "Caminho/Arquivo.xlsx",
-  #                     SeqVarPlan = c("atvTot", "patLiq"),
-  #                     index = c("cod", "ano"),
-  #                     clsPer = "numeric", clsVlr = "numeric")
-  #
-  # Arquivo: Informe o caminho do arquivo com sua extensão xlsx
-  # SeqVarPlan: Crie um vetor com o nome de cada variavel coletada na sequencia
-  #             das abas do arquivo em excel 
-  # index: Informar sempre cod e, no período, colocar conforme a frequencia
-  #        coletada (ano, trimestre, mes, data). Serve para nomear as colunas,
-  #        portanto, outros valores tambem sao aceitos
-  # clsPer: Informa a classe do período. Quando Data e mês, informa "date";
-  #         Quando ano, informa "numeric" e quando trimestre, informa "text".
-  # clsVlr: O padrao eh numerico, porem se for coletado algum dado com texto,
-  #         como o nome do acionista, coloca "text".
-  #         
-  # Obs.: Ao final eh demonstrada uma auditoria identificando o nome dado pelo
-  #       usuario para cada variavel e o cabecalho da planilha com o nome da
-  #       variavel coletada no economatica. Serve para saber se a sequencia dada
-  #       pelo usuario realmente reflete a sequencia das abas da planilha
-  #################################################################################
+################ Instruções #####################################################
+# Objetivo: Transformar em painel variaveis coletadas em matrix (Economatica)
+# Apos salvar cada variavel de interesse em uma aba do excel no formato
+# matrix do economatica, aplica essa funcao, conforme exemplo:
+# 
+#     cntdd.uneMatrix(Arquivo = "Caminho/Arquivo.xlsx",
+#                     SeqVarPlan = c("atvTot", "patLiq"),
+#                     index = c("cod", "ano"),
+#                     clsPer = "numeric", clsVlr = "numeric")
+#
+# Arquivo: Informe o caminho do arquivo com sua extensão xlsx
+# SeqVarPlan: Crie um vetor com o nome de cada variavel coletada na sequencia
+#             das abas do arquivo em excel 
+# index: Informar sempre cod e, no período, colocar conforme a frequencia
+#        coletada (ano, trimestre, mes, data). Serve para nomear as colunas,
+#        portanto, outros valores tambem sao aceitos
+# clsPer: Informa a classe do período. Quando Data e mês, informa "date";
+#         Quando ano, informa "numeric" e quando trimestre, informa "text".
+# clsVlr: O padrao eh numerico, porem se for coletado algum dado com texto,
+#         como o nome do acionista, coloca "text".
+#         
+# Obs.: Ao final eh demonstrada uma auditoria identificando o nome dado pelo
+#       usuario para cada variavel e o cabecalho da planilha com o nome da
+#       variavel coletada no economatica. Serve para saber se a sequencia dada
+#       pelo usuario realmente reflete a sequencia das abas da planilha
+#################################################################################
   
   cntdd.variosMatrix(Arquivo = Arquivo, SeqVarPlan = SeqVarPlan, index = index, clsPer = clsPer, clsVlr = clsVlr)
   
@@ -326,18 +326,19 @@ ufsRegiao <-
 
 
 
-################ Instruções #####################################################
-# Objetivo: Gerar uma tabela de correlacao com identificação da significância
-# estatística.
-# 
-# Adaptado de:
-# http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
-#################################################################################
-
 cntdd.corstars <- function(x, method=c("pearson", "spearman"),
                      removeTriangle=c("upper", "lower"),
                      result=c("none", "html", "latex"),
                      digits = 4){
+  
+  ################ Instruções #####################################################
+  # Objetivo: Gerar uma tabela de correlacao com identificação da significância
+  # estatística.
+  # 
+  # Adaptado de:
+  # http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
+  #################################################################################
+  
   #Compute correlation matrix
   require(Hmisc, warn.conflicts = F)
   x <- as.matrix(x)
@@ -384,6 +385,9 @@ cntdd.corstars <- function(x, method=c("pearson", "spearman"),
 
 
 
+
+cntdd.baixaBCB <- function(codSerie, inicio = "01/01/2001"){
+
 ################ Instruções #####################################################
 # Objetivo: Baixar series temporais do gerenciador do Banco Central
 # 
@@ -393,8 +397,7 @@ cntdd.corstars <- function(x, method=c("pearson", "spearman"),
 # Baseado de:
 # https://gabrielrega.com/2017/07/26/baixando-series-diretamente-do-sgs-do-banco-central-pelo-r/
 #################################################################################
-
-cntdd.baixaBCB <- function(codSerie, inicio = "01/01/2001"){
+  
   fromJSON(
     paste0(
       "http://api.bcb.gov.br/dados/serie/bcdata.sgs.",
@@ -403,4 +406,76 @@ cntdd.baixaBCB <- function(codSerie, inicio = "01/01/2001"){
       inicio
     )
   )
+}
+
+
+
+
+TesteMedia <- function(a, b, pvalor = 0.05){
+  
+################ Instruções #####################################################
+# Objetivo: Gerar uma tabela com resultados de teste de media
+# 
+# Input: Dois vetores com valores correspondentes a grupos diferentes
+# Output: data.frame com resultados
+#
+# Um exemplo do teste incorporando uma tabela no rmarkdown:
+# precisa instalar o pacote kableExtra - install.packages("kableExtra")
+#   
+#   a <- vetor1
+#   b <- vetor2
+#   
+#   TesteMedia(a, b) %>% 
+#     kbl(booktabs = TRUE, digits = 3, align = "l",
+#         caption = "Teste de media") %>% 
+#     kable_paper(full_width = F) %>% 
+#     pack_rows("Testes de Normalidade", 1, 3) %>%  
+#     pack_rows("Teste de Média", 4, 6) %>%  
+#     pack_rows("Médias vs Observações", 7, 9)
+#  
+#################################################################################
+  
+  A <- a
+  B <- b
+  
+  qdeA <- length(A); qdeB <- length(B)
+  
+  norm.A <- lillie.test(A)
+  norm.B <- lillie.test(B)
+  pvNormA <- norm.A$p.value
+  pvNormB <- norm.B$p.value
+  
+  varAB <- var.test(A, B)
+  pvVarAB <- varAB$p.value
+  
+  if(pvVarAB > pvalor) {parVar <- T} else {parVar <- F}
+  
+  if(pvNormA > pvalor & pvNormB > pvalor) {difmedia <- "Teste t";
+  pvteste <- t.test(A, B, var.equal = parVar);
+  Normalidade <- "Ambos grupos tem distribuição normal"} else {difmedia <- "Mann-Whitney";
+  pvteste <- suppressMessages(suppressWarnings(wilcox.test(A, B)));
+  Normalidade <- "Pelo menos um dos grupos não tem distribuição normal"}
+  
+  if(pvteste$p.value > pvalor) {result <- "Médias iguais"} else {result <- "Médias diferentes"}
+  
+  dados <- data.frame(
+    normA = formatC(pvNormA, digits = 3, format = "f", decimal.mark = ","),
+    normB = formatC(pvNormB, digits = 3, format = "f", decimal.mark = ","),
+    Normalidade = Normalidade,
+    teste =  difmedia,
+    pvalue = formatC(pvteste$p.value, digits = 3, format = "f", decimal.mark = ","),
+    resultado = result,
+    mediaA = formatC(mean(A, na.rm = T), digits = 3, format = "f", decimal.mark = ","),
+    mediaB = formatC(mean(B, na.rm = T), digits = 3, format = "f", decimal.mark = ","),
+    qdeObs = paste0("A: ", qdeA, " | B: ", qdeB))
+  
+  tabDados <<- as.data.frame(t(dados))
+  rownames(tabDados) <-c(
+    "p-Value A", "p-Value B", "Normalidade", "Teste Usado", "p-Value", "Análise",
+    "Média de A", "Média de B", "Qde de Obs"
+  )
+  
+  colnames(tabDados) <- "Resultados"
+  
+  return(tabDados)
 }
