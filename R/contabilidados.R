@@ -394,7 +394,7 @@ cntdd.baixaBCB <- function(codSerie, inicio = "01/01/2001"){
 # Input: Código da série no SGS/BACEN
 # Output: data.frame com a série
 # 
-# Baseado de:
+# Baseado no codigo de:
 # https://gabrielrega.com/2017/07/26/baixando-series-diretamente-do-sgs-do-banco-central-pelo-r/
 #################################################################################
   
