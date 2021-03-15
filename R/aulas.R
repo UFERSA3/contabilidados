@@ -187,6 +187,7 @@ fin.indiferencas <- function(utilidade = 0.08, aversao = 0){
 # Curva de indiferenças - preferências do investidor
 
 fin.indifPreferInvestidor <- function(utilidade = 0.05, aversao = 30){
+  
   curva_indif <- function(risco, utilidadebase, aversaobase){
     ret <- utilidadebase + (1/2)*aversaobase*risco^2
     return(ret)
@@ -267,21 +268,26 @@ fin.indiferInvestidor <- function(utilidade = 0.05, aversao = 30){
          aes(y = retorno, x = risco)) +
     
     geom_line(col = "green", size = 1) +
-    
+    geom_point(x = sort(dados$risco)[round(length(dados$risco)/3, 0)],
+               y = sort(dados$retorno)[round(length(dados$risco)/3, 0)]) +
+    geom_point(x = sort(dados$risco)[round(length(dados$risco)*4/5, 0)],
+               y = sort(dados$retorno2)[round(length(dados$risco)*4/5, 0)]) +
+    geom_point(x = sort(dados$risco)[round(length(dados$risco)*3/6, 0)],
+               y = sort(dados$retorno2)[round(length(dados$risco)*3/6, 0)]) +
     geom_line(aes(y = retorno2, x = risco),
               col = "red", size = 1) +
     annotate("text",
-             x = sort(dados$risco)[round(length(dados$risco)/4)],
+             x = sort(dados$risco)[round(length(dados$risco)/3)],
              y = sort(dados$retorno)[round(length(dados$risco)/3, 0)],
-             label = "X", color = "red") +
+             label = "X", color = "red", vjust = -1) +
     annotate("text",
-             x = sort(dados$risco)[round(length(dados$risco)/2)],
-             y = sort(dados$retorno2)[round(length(dados$risco)*2/5, 0)],
-             label = "W", color = "green") +
+             x = sort(dados$risco)[round(length(dados$risco)*3/6)],
+             y = sort(dados$retorno2)[round(length(dados$risco)*3/6, 0)],
+             label = "W", color = "green", vjust = -0.5) +
     annotate("text",
-             x = sort(dados$risco)[round(length(dados$risco)*3/4)],
+             x = sort(dados$risco)[round(length(dados$risco)*4/5)],
              y = sort(dados$retorno2)[round(length(dados$risco)*4/5, 0)],
-             label = "Y", color = "green") +
+             label = "Y", color = "green", vjust = -0.5) +
     ylab("Retorno Esperado") +
     xlab("Risco") +
     labs(title = "Curvas de indiferenças",
