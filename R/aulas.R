@@ -4,7 +4,7 @@ cntdd.carregaPacotes <- function (
   pcts = c("tidyverse", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
            "quantmod", "PerformanceAnalytics",
-           "jsonlite")){
+           "jsonlite", "scales")){
   
   # # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
   #
@@ -366,5 +366,116 @@ fin.retornoEspPortfolio <- function(papel1 = "TIET11",
 }
 
 
+# Visualiza correlação
 
+fin.visualizaCorrel <- function(correlacao = -1){
+  
+  if(correlacao > 1 | correlacao < -1){
+    stop("O valor de correlação informado tem que está entre -1 e 1")} else{
+      M<-matrix(correlacao,2,2)
+      diag(M)<-1
+      X <- round(MASS::mvrnorm(n = 50,mu = rep(0.05,2),
+                               Sigma = M,empirical=TRUE), 3)
+      
+      X <- data.frame(
+        data = as.yearmon(seq.Date(as.Date("2016-12-01"),
+                                   by = "month", length.out = 50)), X)
+      
+      ggplot(X, aes(x = data, y = X1)) +
+        geom_line(size = 1) +
+        geom_line(aes(x = data, y = X2), size = 0.8, color = "red")+
+        ylab("Retornos ficticios") +
+        xlab("Meses") +
+        labs(title = "Visualização de duas séries, conforme sua correlação",
+             subtitle = paste0("Exemplo de dois ativos com correlação igual a ",
+                               as.character(correlacao)),
+             caption = "@2021 contabiliDados") +
+        theme_light()
+    }
+}
+
+
+fin.efeitoCorrelCarteira <- function(
+  retEsp_A = 0.12,
+  retEsp_B = 0.24,
+  desvio_A = 0.18,
+  desvio_B = 0.27,
+  correlacao = 1
+){
+  if(correlacao > 1 | correlacao < -1){
+    stop("O valor de correlação informado tem que está entre -1 e 1")} else{
+      
+      dados <- data.frame(
+        pesoPerc_A = c(1, 0.8, 0.6, 0.4, 0.2, 0),
+        pesoPerc_B = c(0, 0.2, 0.4, 0.6, 0.8, 1)
+      )
+      
+      dados$retPerc_Portf <- round((dados$pesoPerc_A*retEsp_A + dados$pesoPerc_B*retEsp_B), 3)
+      
+      dados$riscoPerc_Portf_Pos <- round(((((dados$pesoPerc_A^2 * desvio_A^2) +
+                                              (dados$pesoPerc_B^2 * desvio_B^2) + 
+                                              2 * dados$pesoPerc_A * dados$pesoPerc_B *
+                                              desvio_A * desvio_B * abs(correlacao)))^0.5), 3)
+      
+      dados$riscoPerc_Portf_Neg <- round(((((dados$pesoPerc_A^2 * desvio_A^2) +
+                                              (dados$pesoPerc_B^2 * desvio_B^2) + 
+                                              2 * dados$pesoPerc_A * dados$pesoPerc_B *
+                                              desvio_A * desvio_B * (abs(correlacao)*-1)))^0.5), 3)
+      
+      dados <- sapply(dados, label_percent())
+      
+      return(dados)
+    }
+  }
+
+
+fin.correlAcoes <- function(papel1 = "ABEV3",
+                            papel2 = "TOTS3",
+                            anoInicial = "2016",
+                            mesInicial = "01",
+                            anoFinal = "2019",
+                            mesFinal = "12"){
+  acao1 <- suppressMessages(suppressWarnings(getSymbols(paste0(papel1, ".SA"),
+                                                        auto.assign = F)))
+  
+  acao1 <-  suppressMessages(suppressWarnings(
+    TTR::ROC(Ad(to.monthly(acao1[paste0(anoInicial,"-",
+                                        mesInicial,
+                                        "/",
+                                        anoFinal, "-",
+                                        mesFinal)])), na.pad = F)))
+  
+  acao2 <- suppressMessages(suppressWarnings(getSymbols(paste0(papel2, ".SA"),
+                                                        auto.assign = F)))
+  
+  acao2 <- suppressMessages(suppressWarnings(
+    TTR::ROC(Ad(to.monthly(acao2[paste0(anoInicial,"-",
+                                        mesInicial,
+                                        "/",
+                                        anoFinal, "-",
+                                        mesFinal)])), na.pad = F)))
+  
+  dados <- data.frame(data = index(acao1),
+                      ativoA = as.vector(coredata(acao1)),
+                      ativoB = as.vector(coredata(acao2)))
+  
+  correlAcoes <- round(cor(dados[, 2:3])[1,2], 2)
+
+  assign(papel1, acao1, envir = .GlobalEnv)
+  assign(papel2, acao2, envir = .GlobalEnv)
+  
+  ggplot(dados, aes(x = data, y = ativoA)) +
+    geom_line(size = 1) +
+    geom_line(aes(x = data, y = ativoB), size = 0.8, color = "red")+
+    annotate("text", label = paste0("Correlação = ", correlAcoes),
+             x = dados$data[20],
+             y = max(c(dados$ativoA, dados$ativoB))) +
+    ylab("Retornos das ações") +
+    xlab("Meses") +
+    labs(title = "Análise da correlação de séries",
+         subtitle = paste0(papel1, " (Preto)", " vs ", papel2, " (Vermelho)"),
+         caption = "@2021 contabiliDados") +
+    theme_light()
+  
+}
 
