@@ -395,7 +395,7 @@ fin.visualizaCorrel <- function(correlacao = -1){
 }
 
 
-fin.efeitoCorrelCarteira <- function(
+fin.efeitoCorrelRiscoCarteira <- function(
   retEsp_A = 0.12,
   retEsp_B = 0.24,
   desvio_A = 0.18,
@@ -467,7 +467,7 @@ fin.correlAcoes <- function(papel1 = "ABEV3",
   ggplot(dados, aes(x = data, y = ativoA)) +
     geom_line(size = 1) +
     geom_line(aes(x = data, y = ativoB), size = 0.8, color = "red")+
-    annotate("text", label = paste0("Correlação = ", correlAcoes),
+    annotate("text", label = paste0("Correlação = ", label_percent()(correlAcoes)),
              x = dados$data[20],
              y = max(c(dados$ativoA, dados$ativoB))) +
     ylab("Retornos das ações") +
@@ -479,3 +479,27 @@ fin.correlAcoes <- function(papel1 = "ABEV3",
   
 }
 
+
+
+definePeso <- function(desvioA = 0.15, desvioB = 0.12, correlAB = -1){
+  
+  pesoA <- (desvioB^2-correlAB*desvioB*desvioA)/
+    ((desvioA^2 + desvioB^2)-(2*correlAB*desvioB*desvioA))
+  
+  print(paste0("O peso de A na carteira é :", label_percent()(pesoA)))
+  print(paste0("O peso de B na carteira é :", label_percent()(1-pesoA)))
+  
+}
+
+
+definePeso()
+fin.comparaAcoes(papel1 = "ABEV3",
+                 papel2 = "TOTS3",
+                 anoInicial = "2016",
+                 mesInicial = "01",
+                 anoFinal = "2019",
+                 mesFinal = "12")
+fin.correlAcoes()
+fin.efeitoCorrelRiscoCarteira(retEsp_A = mean(ABEV3), retEsp_B = mean(TOTS3),
+                         desvio_A = sd(ABEV3), desvio_B = sd(TOTS3),
+                         correlacao = as.numeric(cor(ABEV3, TOTS3)))
