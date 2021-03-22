@@ -422,13 +422,18 @@ fin.efeitoCorrelRiscoCarteira <- function(
                                               2 * dados$pesoPerc_A * dados$pesoPerc_B *
                                               desvio_A * desvio_B * (abs(correlacao)*-1)))^0.5), 3)
 
+      maximo <- max(c(dados$riscoPerc_Portf_Pos, dados$riscoPerc_Portf_Neg))
+      minimo <- min(c(dados$riscoPerc_Portf_Pos, dados$riscoPerc_Portf_Neg))
+      
       
       ggplot(dados,
              aes(x = riscoPerc_Portf_Pos, y = retPerc_Portf)) +
         geom_point() +
-        scale_x_discrete() +
-        ylab("Retornos das ações") +
-        xlab("Meses") +
+        coord_cartesian(xlim = c(0, maximo+0.05)) +
+        xlim(c(minimo-0.05, maximo+0.05)) +
+        scale_y_continuous(labels = scales::percent) +
+        ylab("Retornos da carteira") +
+        xlab("Risco (Desvio)") +
         labs(title = "Análise da correlação de séries",
              subtitle = paste0("Correlação de ", label_percent()(correlacao)),
              caption = "@2021 contabiliDados") +
@@ -437,9 +442,11 @@ fin.efeitoCorrelRiscoCarteira <- function(
       ggplot(dados,
              aes(x = riscoPerc_Portf_Neg, y = retPerc_Portf)) +
         geom_point() + 
-        scale_x_discrete() +
-        ylab("Retornos das ações") +
-        xlab("Meses") +
+        coord_cartesian(xlim = c(0, maximo+0.05)) +
+        xlim(c(minimo-0.05, maximo+0.05)) +
+        scale_y_continuous(labels = scales::percent) +
+        ylab("Retornos da carteira") +
+        xlab("Risco (Desvio)") +
         labs(title = "Análise da correlação de séries",
              subtitle = paste0("Correlação de ", label_percent()(correlacao*-1)),
              caption = "@2021 contabiliDados") +
