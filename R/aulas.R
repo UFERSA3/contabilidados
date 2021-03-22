@@ -31,8 +31,8 @@ cntdd.carregaPacotes()
 
 # Compara duas ações em relação a média e desvio
 
-fin.comparaAcoes <- function(papel1 = "EGIE3",
-                             papel2 = "TIET11",
+fin.comparaAcoes <- function(papel1 = "ABEV3",
+                             papel2 = "TOTS3",
                              anoInicial = "2016",
                              mesInicial = "01",
                              anoFinal = "2019",
@@ -421,10 +421,38 @@ fin.efeitoCorrelRiscoCarteira <- function(
                                               (dados$pesoPerc_B^2 * desvio_B^2) + 
                                               2 * dados$pesoPerc_A * dados$pesoPerc_B *
                                               desvio_A * desvio_B * (abs(correlacao)*-1)))^0.5), 3)
+
+      
+      ggplot(dados,
+             aes(x = riscoPerc_Portf_Pos, y = retPerc_Portf)) +
+        geom_point() +
+        scale_x_discrete() +
+        ylab("Retornos das ações") +
+        xlab("Meses") +
+        labs(title = "Análise da correlação de séries",
+             subtitle = paste0("Correlação de ", label_percent()(correlacao)),
+             caption = "@2021 contabiliDados") +
+        theme_light() -> frontPos
+      
+      ggplot(dados,
+             aes(x = riscoPerc_Portf_Neg, y = retPerc_Portf)) +
+        geom_point() + 
+        scale_x_discrete() +
+        ylab("Retornos das ações") +
+        xlab("Meses") +
+        labs(title = "Análise da correlação de séries",
+             subtitle = paste0("Correlação de ", label_percent()(correlacao*-1)),
+             caption = "@2021 contabiliDados") +
+        theme_light() -> frontNeg
+      
+      grafico <- ggpubr::ggarrange(frontPos, frontNeg, ncol = 1, nrow = 2)
       
       dados <- sapply(dados, label_percent())
       
-      return(dados)
+      resultado <- list(dados, grafico)
+      
+      return(resultado)
+      
     }
   }
 
@@ -481,25 +509,13 @@ fin.correlAcoes <- function(papel1 = "ABEV3",
 
 
 
-definePeso <- function(desvioA = 0.15, desvioB = 0.12, correlAB = -1){
+fin.definePeso <- function(desvio_A = 0.15, desvio_B = 0.12, correlacao = -1){
   
-  pesoA <- (desvioB^2-correlAB*desvioB*desvioA)/
-    ((desvioA^2 + desvioB^2)-(2*correlAB*desvioB*desvioA))
+  pesoA <- (desvio_B^2-correlacao*desvio_B*desvio_A)/
+    ((desvio_A^2 + desvio_B^2)-(2*correlacao*desvio_B*desvio_A))
   
   print(paste0("O peso de A na carteira é :", label_percent()(pesoA)))
   print(paste0("O peso de B na carteira é :", label_percent()(1-pesoA)))
   
 }
 
-
-definePeso()
-fin.comparaAcoes(papel1 = "ABEV3",
-                 papel2 = "TOTS3",
-                 anoInicial = "2016",
-                 mesInicial = "01",
-                 anoFinal = "2019",
-                 mesFinal = "12")
-fin.correlAcoes()
-fin.efeitoCorrelRiscoCarteira(retEsp_A = mean(ABEV3), retEsp_B = mean(TOTS3),
-                         desvio_A = sd(ABEV3), desvio_B = sd(TOTS3),
-                         correlacao = as.numeric(cor(ABEV3, TOTS3)))
