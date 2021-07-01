@@ -492,7 +492,9 @@ cntdd.CNPJ_Mascara <- function(cnpj){
   #################################################################################
   
   qdeCar <- nchar(cnpj)
-  cnpj1 <- paste0(substr(fullcnpj, 1, (14-qdeCar)), substr(cnpj, 1, qdeCar-2), "-", substr(cnpj, qdeCar-1, qdeCar))
+  cnpj1 <- paste0(substr("00000000000000", 1, (14-qdeCar)),
+                  substr(cnpj, 1, qdeCar-2), "-",
+                  substr(cnpj, qdeCar-1, qdeCar))
   cnpjFinal <- paste0(substr(cnpj1, 1, 2), ".",
                       substr(cnpj1, 3, 5), ".",
                       substr(cnpj1, 6, 8), "/",
