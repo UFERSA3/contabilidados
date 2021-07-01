@@ -479,3 +479,25 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
   
   return(tabDados)
 }
+
+
+
+cntdd.CNPJ_Mascara <- function(cnpj){
+  
+  ################ Instruções #####################################################
+  # Objetivo: Gerar a máscara do CNPJ quando o CNPJ vier como numero
+  # 
+  # Input: CNPJ em formato numérico
+  # Output: CNPJ em formato string com a máscara de 18 dígitos
+  #################################################################################
+  
+  qdeCar <- nchar(cnpj)
+  cnpj1 <- paste0(substr(fullcnpj, 1, (14-qdeCar)), substr(cnpj, 1, qdeCar-2), "-", substr(cnpj, qdeCar-1, qdeCar))
+  cnpjFinal <- paste0(substr(cnpj1, 1, 2), ".",
+                      substr(cnpj1, 3, 5), ".",
+                      substr(cnpj1, 6, 8), "/",
+                      substr(cnpj1, 9, 15))
+  
+  return(cnpjFinal)
+  
+  }
