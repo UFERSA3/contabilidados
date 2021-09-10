@@ -273,58 +273,6 @@ cntdd.uneMatrix <- function(Arquivo, SeqVarPlan, index, clsPer, clsVlr){
   
 }
 
-cntdd.theme <- theme(legend.position = "bottom", legend.title = element_blank(),
-                     axis.title.x = element_blank(), axis.title.y = element_blank(),
-                     axis.text.y = element_text(color = "snow4"),
-                     axis.text.x = element_text(color = "snow4"),
-                     plot.title = element_text(color = 'lightblue3', size = 15),
-                     plot.subtitle = element_text(color = "snow4", size = 10),
-                     plot.caption = element_text(color = "snow3", size = 8),
-                     panel.background = element_blank(),
-                     panel.grid = element_line(color = "snow2"))
-
-mes.nome <- c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
-              "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro")
-
-meses <- data.frame(mes.num = 1:12,
-                    mes.nome = mes.nome,
-                    mes.abb = substr(mes.nome, 1, 3),
-                    month.name = month.name,
-                    month.abb = month.abb,
-                    mes.chr = c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"),
-                    bim  = rep(1:6, each = 2),
-                    trim = rep(1:4, each = 3),
-                    quad = rep(1:3, each = 4),
-                    sem  = rep(1:2, each = 6))
-  
-rm(mes.nome)
-
-
-
-ufsRegiao <-
-  data.frame(
-    uf = c("DF", "GO", "MS", "MT", "CE", "AL", "BA", "MA", "PB", "PE", "PI",
-           "RN", "SE", "AC", "AM", "AP", "PA", "RO", "RR", "TO", "RJ", "ES",
-           "MG", "SP", "PR", "RS", "SC", "EX", "BR"),
-    descUF = c("Distrito Federal", "Goiás", "Mato Grosso do Sul",
-               "Mato Grosso", "Ceará", "Alagoas", "Bahia", "Maranhão",
-               "Paraíba", "Pernambuco", "Piauí", "Rio Grande do Norte",
-               "Sergipe", "Acre", "Amazonas", "Amapá", "Pará", "Rondônia",
-               "Roraima", "Tocantins", "Rio de Janeiro", "Espírito Santo",
-               "Minas Gerais", "São Paulo", "Paraná", "Rio Grande do Sul",
-               "Santa Catarina", "Exército", "Multiplos Estados"),
-    codRegiao = c("CO", "CO", "CO", "CO", "NE", "NE", "NE", "NE", "NE", "NE",
-                  "NE", "NE", "NE", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
-                  "SD", "SD", "SD", "SD", "SU", "SU", "SU", "FAB", "BR"),
-    regiao = c("Centro-Oeste", "Centro-Oeste", "Centro-Oeste", "Centro-Oeste",
-               "Nordeste", "Nordeste", "Nordeste", "Nordeste", "Nordeste",
-               "Nordeste", "Nordeste", "Nordeste", "Nordeste", "Norte",
-               "Norte", "Norte", "Norte", "Norte", "Norte", "Norte",
-               "Sudeste", "Sudeste", "Sudeste", "Sudeste", "Sul", "Sul",
-               "Sul", "Brasil", "Multiplos Estados")
-  )
-
-
 
 cntdd.corstars <- function(x, method=c("pearson", "spearman"),
                      removeTriangle=c("upper", "lower"),
@@ -502,4 +450,61 @@ cntdd.CNPJ_Mascara <- function(cnpj){
   
   return(cnpjFinal)
   
-  }
+}
+
+
+
+cntdd.utils <-
+  list(
+    cntdd.theme =
+      theme(legend.position = "bottom", legend.title = element_blank(),
+            axis.title.x = element_blank(), axis.title.y = element_blank(),
+            axis.text.y = element_text(color = "snow4"),
+            axis.text.x = element_text(color = "snow4"),
+            plot.title = element_text(color = 'lightblue3', size = 15),
+            plot.subtitle = element_text(color = "snow4", size = 10),
+            plot.caption = element_text(color = "snow3", size = 8),
+            panel.background = element_blank(),
+            panel.grid = element_line(color = "snow2")),
+    
+    meses =
+      data.frame(mes.num = 1:12,
+                 mes.nome = c("Janeiro", "Fevereiro", "Março", "Abril", "Maio",
+                              "Junho", "Julho", "Agosto", "Setembro", "Outubro",
+                              "Novembro", "Dezembro"),
+                 mes.nome = c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+                              "Jul", "Ago", "Set", "Out", "Nov", "Dez"),
+                 month.name = month.name,
+                 month.abb = month.abb,
+                 mes.chr = c("01", "02", "03", "04", "05", "06", "07", "08",
+                             "09", "10", "11", "12"),
+                 bim  = rep(1:6, each = 2),
+                 trim = rep(1:4, each = 3),
+                 quad = rep(1:3, each = 4),
+                 sem  = rep(1:2, each = 6)),
+    
+    ufsRegiao =
+      data.frame(
+        uf = c("DF", "GO", "MS", "MT", "CE", "AL", "BA", "MA", "PB", "PE", "PI",
+               "RN", "SE", "AC", "AM", "AP", "PA", "RO", "RR", "TO", "RJ", "ES",
+               "MG", "SP", "PR", "RS", "SC", "EX", "BR"),
+        descUF = c("Distrito Federal", "Goiás", "Mato Grosso do Sul",
+                   "Mato Grosso", "Ceará", "Alagoas", "Bahia", "Maranhão",
+                   "Paraíba", "Pernambuco", "Piauí", "Rio Grande do Norte",
+                   "Sergipe", "Acre", "Amazonas", "Amapá", "Pará", "Rondônia",
+                   "Roraima", "Tocantins", "Rio de Janeiro", "Espírito Santo",
+                   "Minas Gerais", "São Paulo", "Paraná", "Rio Grande do Sul",
+                   "Santa Catarina", "Exército", "Multiplos Estados"),
+        codRegiao = c("CO", "CO", "CO", "CO", "NE", "NE", "NE", "NE", "NE", "NE",
+                      "NE", "NE", "NE", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+                      "SD", "SD", "SD", "SD", "SU", "SU", "SU", "FAB", "BR"),
+        regiao = c("Centro-Oeste", "Centro-Oeste", "Centro-Oeste", "Centro-Oeste",
+                   "Nordeste", "Nordeste", "Nordeste", "Nordeste", "Nordeste",
+                   "Nordeste", "Nordeste", "Nordeste", "Nordeste", "Norte",
+                   "Norte", "Norte", "Norte", "Norte", "Norte", "Norte",
+                   "Sudeste", "Sudeste", "Sudeste", "Sudeste", "Sul", "Sul",
+                   "Sul", "Brasil", "Multiplos Estados")
+      )
+    
+  )
+
