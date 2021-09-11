@@ -29,8 +29,8 @@ cntdd.carregaPacotes <- function (
   pcts = c("tidyverse", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
            "quantmod", "PerformanceAnalytics",
-           "jsonlite")){
-  
+           "jsonlite", "tidylog", "xts")){
+
 # # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Objetivo: Carregar um pacote. Caso não exista, instala e carrega
