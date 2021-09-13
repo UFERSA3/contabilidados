@@ -472,7 +472,7 @@ cntdd.utils <-
                  mes.nome = c("Janeiro", "Fevereiro", "Março", "Abril", "Maio",
                               "Junho", "Julho", "Agosto", "Setembro", "Outubro",
                               "Novembro", "Dezembro"),
-                 mes.nome = c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+                 mes.abb  = c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
                               "Jul", "Ago", "Set", "Out", "Nov", "Dez"),
                  month.name = month.name,
                  month.abb = month.abb,
