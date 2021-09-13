@@ -29,7 +29,7 @@ cntdd.carregaPacotes <- function (
   pcts = c("tidyverse", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
            "quantmod", "PerformanceAnalytics",
-           "jsonlite", "tidylog", "xts")){
+           "jsonlite", "tidylog", "xts", "conflicted")){
 
 # # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -53,6 +53,9 @@ cntdd.carregaPacotes <- function (
 
 cntdd.carregaPacotes()
 
+for (f in getNamespaceExports("tidylog")) {
+  conflicted::conflict_prefer(f, "tidylog", quiet = TRUE)
+}
 
 cntdd.BaixaDados <- function (Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date", 
                         ClassValue = "numeric") {
