@@ -507,3 +507,10 @@ cntdd.utils <-
     
   )
 
+
+
+cntdd.AlocMemoria <- function(x){
+  memoriaMb <- x %>% object.size()/(1000^2)
+  resultado <- paste0(round(memoriaMb[1], 2), " Megabytes | Previsto para RDS: ",  round(memoriaMb[1], 2)*.1, " Megabytes (", round(memoriaMb[1], 2)*.1*1000, " Kilobytes)")
+  return(resultado)
+}
