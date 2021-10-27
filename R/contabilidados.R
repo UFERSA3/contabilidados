@@ -514,3 +514,51 @@ cntdd.AlocMemoria <- function(x){
   resultado <- paste0(round(memoriaMb[1], 2), " Megabytes | Previsto para RDS: ",  round(memoriaMb[1], 2)*.1, " Megabytes (", round(memoriaMb[1], 2)*.1*1000, " Kilobytes)")
   return(resultado)
 }
+
+
+# Cria função de pesos para Elicit
+pesosElicit <- function(n_amostra = 1000, n_pesos = 5, minimo = 0.01, maximo = 2){
+  
+  wElicit <- function(n = 5, p = 0.5){
+    df <- data.frame(ord = 1:n)
+    df$num <- (n-df$ord+1)^p
+    df$weight <- df$num/sum(df$num)
+    
+    return(df$weight)
+  }
+  
+  penal <- runif(n_amostra, minimo, maximo)
+  
+  resultado <- list()
+  
+  for (i in 1:n_amostra) {
+    resultado[[paste0("w",i)]] <- wElicit(n = n_pesos, p = penal[i])
+  }
+  
+  
+  as.data.frame(Reduce(rbind, resultado)) %>% 
+    mutate(
+      indiv = paste0("Indiv", 1:n_amostra)) %>% 
+    pivot_longer(cols = starts_with("V"), names_to = "Pesos", values_to = "Valores") %>% 
+    arrange(indiv, Pesos) %>% 
+    group_by(indiv) %>% 
+    mutate(
+      verifOrd =
+        case_when(
+          Pesos == "V1" ~ TRUE,
+          TRUE ~ Valores < dplyr::lag(Valores)
+        ),
+      verifSum = sum(Valores)
+    ) -> bd1
+  
+  
+  bd1 %>%
+    group_by(Pesos) %>%
+    summarise(Media = mean(Valores), Desvio = sd(Valores)) %>% 
+    data.frame -> bd2
+  
+  resultado <- list(bdCompleto = bd1, Tabela = bd2)
+  
+  return(resultado)
+  
+}
