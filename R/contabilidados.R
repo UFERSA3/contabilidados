@@ -562,3 +562,88 @@ pesosElicit <- function(n_amostra = 1000, n_pesos = 5, minimo = 0.01, maximo = 2
   return(resultado)
   
 }
+
+
+# Comportamento médio e de desvio de uma variável, baseado em grupo criado a
+# partir de uma variável do banco
+
+mediaDesvioPorGrupo <- function(varGrupo, varInteresse, ngrupos = 10){
+  
+  dados %>% 
+    mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
+                       include.lowest = T,
+                       labels = paste0("p", 1:ngrupos))) %>% 
+    group_by(grupo) %>% 
+    summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
+    pivot_longer(cols = -grupo,
+                 names_to = "estat",
+                 values_to = "valores") %>% 
+    pivot_wider(names_from = "grupo",
+                values_from = "valores")
+}
+
+cntdd.novos <- 
+  list(
+    elicit =
+      function(n_amostra = 1000, n_pesos = 5, minimo = 0.01, maximo = 2){
+        
+        wElicit <- function(n = 5, p = 0.5){
+          df <- data.frame(ord = 1:n)
+          df$num <- (n-df$ord+1)^p
+          df$weight <- df$num/sum(df$num)
+          
+          return(df$weight)
+        }
+        
+        penal <- runif(n_amostra, minimo, maximo)
+        
+        resultado <- list()
+        
+        for (i in 1:n_amostra) {
+          resultado[[paste0("w",i)]] <- wElicit(n = n_pesos, p = penal[i])
+        }
+        
+        
+        as.data.frame(Reduce(rbind, resultado)) %>% 
+          mutate(
+            indiv = paste0("Indiv", 1:n_amostra)) %>% 
+          pivot_longer(cols = starts_with("V"), names_to = "Pesos", values_to = "Valores") %>% 
+          arrange(indiv, Pesos) %>% 
+          group_by(indiv) %>% 
+          mutate(
+            verifOrd =
+              case_when(
+                Pesos == "V1" ~ TRUE,
+                TRUE ~ Valores < dplyr::lag(Valores)
+              ),
+            verifSum = sum(Valores)
+          ) -> bd1
+        
+        
+        bd1 %>%
+          group_by(Pesos) %>%
+          summarise(Media = mean(Valores), Desvio = sd(Valores)) %>% 
+          data.frame -> bd2
+        
+        resultado <- list(bdCompleto = bd1, Tabela = bd2)
+        
+        return(resultado)
+        
+      },
+    MediaDesvioGrupo =
+      function(varGrupo, varInteresse, ngrupos = 10){
+        
+        dados %>% 
+          mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
+                             include.lowest = T,
+                             labels = paste0("p", 1:ngrupos))) %>% 
+          group_by(grupo) %>% 
+          summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
+          pivot_longer(cols = -grupo,
+                       names_to = "estat",
+                       values_to = "valores") %>% 
+          pivot_wider(names_from = "grupo",
+                      values_from = "valores")
+      }
+  )
+
