@@ -635,16 +635,18 @@ cntdd.novos <-
         
         dados <- df
         
-        dados %>% 
-          mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
-                             include.lowest = T,
-                             labels = paste0("p", 1:ngrupos))) %>% 
-          group_by(grupo) %>% 
-          summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
-          pivot_longer(cols = -grupo,
-                       names_to = "estat",
-                       values_to = "valores") %>% 
-          pivot_wider(names_from = "grupo",
-                      values_from = "valores")
+        suppressMessages(suppressWarnings(
+          dados %>% 
+            mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
+                               include.lowest = T,
+                               labels = paste0("p", 1:ngrupos))) %>% 
+            group_by(grupo) %>% 
+            summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
+            pivot_longer(cols = -grupo,
+                         names_to = "estat",
+                         values_to = "valores") %>% 
+            pivot_wider(names_from = "grupo",
+                        values_from = "valores")
+        ))
       }
   )
