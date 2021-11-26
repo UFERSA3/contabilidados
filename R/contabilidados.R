@@ -631,7 +631,9 @@ cntdd.novos <-
         
       },
     MediaDesvioGrupo =
-      function(varGrupo, varInteresse, ngrupos = 10){
+      function(df, varGrupo, varInteresse, ngrupos = 10){
+        
+        dados <- df
         
         dados %>% 
           mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
@@ -646,4 +648,3 @@ cntdd.novos <-
                       values_from = "valores")
       }
   )
-
