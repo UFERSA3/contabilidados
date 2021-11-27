@@ -405,6 +405,8 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
   
   if(pvteste$p.value > pvalor) {result <- "Médias iguais"} else {result <- "Médias diferentes"}
   
+  spread <- mean(A, na.rm = T) - mean(B, na.rm = T)
+  
   dados <- data.frame(
     normA = formatC(pvNormA, digits = 3, format = "f", decimal.mark = ","),
     normB = formatC(pvNormB, digits = 3, format = "f", decimal.mark = ","),
@@ -414,7 +416,7 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
     resultado = result,
     mediaA = formatC(mean(A, na.rm = T), digits = 3, format = "f", decimal.mark = ","),
     mediaB = formatC(mean(B, na.rm = T), digits = 3, format = "f", decimal.mark = ","),
-    spread = formatC(mediaA - mediaB, digits = 3, format = "f", decimal.mark = ","),
+    spread = formatC(spread, digits = 3, format = "f", decimal.mark = ","),
     qdeObs = paste0("A: ", qdeA, " | B: ", qdeB))
   
   tabDados <<- as.data.frame(t(dados))
