@@ -649,7 +649,7 @@ cntdd.novos <-
         res1 <-
           bd1 %>% 
           group_by(grupo) %>% 
-          summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
+          summarise(across(varInteresse, list(mean = mean, sd = sd, qdeObs = length))) %>% 
           pivot_longer(cols = -grupo,
                        names_to = "estat",
                        values_to = "valores") %>% 
@@ -687,6 +687,6 @@ cntdd.novos <-
       }
     
   )
-
+cntdd.novos$MediaDesvioGrupo(df = iris,varGrupo =  "Sepal.Width", varInteresse = "Sepal.Length", ngrupos = 3)
 
 
