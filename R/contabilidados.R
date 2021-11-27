@@ -382,8 +382,8 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
 #  
 #################################################################################
   
-  A <- a
-  B <- b
+  A <- rnorm(200)
+  B <- rnorm(200)
   
   qdeA <- length(A); qdeB <- length(B)
   
@@ -422,7 +422,7 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
   tabDados <<- as.data.frame(t(dados))
   rownames(tabDados) <-c(
     "p-Value A", "p-Value B", "Normalidade", "Teste Usado", "p-Value", "Análise",
-    "Média de A", "Média de B", "Qde de Obs"
+    "Média de A", "Média de B", "Spread", "Qde de Obs"
   )
   
   colnames(tabDados) <- "Resultados"
@@ -431,7 +431,7 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
 }
 
 
-
+cntdd.TesteMedia(rnorm(200), rnorm(200))
 cntdd.CNPJ_Mascara <- function(cnpj){
   
   ################ Instruções #####################################################
