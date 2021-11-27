@@ -382,8 +382,8 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
 #  
 #################################################################################
   
-  A <- rnorm(200)
-  B <- rnorm(200)
+  A <- a
+  B <- b
   
   qdeA <- length(A); qdeB <- length(B)
   
