@@ -570,20 +570,20 @@ pesosElicit <- function(n_amostra = 1000, n_pesos = 5, minimo = 0.01, maximo = 2
 # Comportamento médio e de desvio de uma variável, baseado em grupo criado a
 # partir de uma variável do banco
 
-mediaDesvioPorGrupo <- function(varGrupo, varInteresse, ngrupos = 10){
-  
-  dados %>% 
-    mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
-                       include.lowest = T,
-                       labels = paste0("p", 1:ngrupos))) %>% 
-    group_by(grupo) %>% 
-    summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
-    pivot_longer(cols = -grupo,
-                 names_to = "estat",
-                 values_to = "valores") %>% 
-    pivot_wider(names_from = "grupo",
-                values_from = "valores")
-}
+# mediaDesvioPorGrupo <- function(varGrupo, varInteresse, ngrupos = 10){
+#   
+#   dados %>% 
+#     mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
+#                        include.lowest = T,
+#                        labels = paste0("p", 1:ngrupos))) %>% 
+#     group_by(grupo) %>% 
+#     summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
+#     pivot_longer(cols = -grupo,
+#                  names_to = "estat",
+#                  values_to = "valores") %>% 
+#     pivot_wider(names_from = "grupo",
+#                 values_from = "valores")
+# }
 
 cntdd.novos <- 
   list(
@@ -656,14 +656,12 @@ cntdd.novos <-
           pivot_wider(names_from = "grupo",
                       values_from = "valores")
         
-        VarMedia1 <- 2    
         if(is.null(VarMedia1)) {
           grp1 <- bd1 %>% filter(grupo == paste0("p", 1)) %>% dplyr::select(contains(varInteresse)) %>% pull()
         } else {
           grp1 <- bd1 %>% filter(grupo == paste0("p", VarMedia1)) %>% dplyr::select(contains(varInteresse)) %>% pull()
         }
         
-        VarMedia2 <- 5
         if(is.null(VarMedia2)) {
           grp2 <- bd1 %>% filter(grupo == paste0("p", ngrupos)) %>% dplyr::select(contains(varInteresse)) %>% pull()
         } else {
