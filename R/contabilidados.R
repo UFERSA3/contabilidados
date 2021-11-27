@@ -414,6 +414,7 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
     resultado = result,
     mediaA = formatC(mean(A, na.rm = T), digits = 3, format = "f", decimal.mark = ","),
     mediaB = formatC(mean(B, na.rm = T), digits = 3, format = "f", decimal.mark = ","),
+    spread = formatC(mediaA - mediaB, digits = 3, format = "f", decimal.mark = ","),
     qdeObs = paste0("A: ", qdeA, " | B: ", qdeB))
   
   tabDados <<- as.data.frame(t(dados))
@@ -631,22 +632,61 @@ cntdd.novos <-
         
       },
     MediaDesvioGrupo =
-      function(df, varGrupo, varInteresse, ngrupos = 10){
+      function(df, varGrupo, varInteresse, ngrupos = 5, VarMedia1 = NULL, VarMedia2 = NULL){
         
         dados <- df
         
-        suppressMessages(suppressWarnings(
-          dados %>% 
-            mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
-                               include.lowest = T,
-                               labels = paste0("p", 1:ngrupos))) %>% 
-            group_by(grupo) %>% 
-            summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
-            pivot_longer(cols = -grupo,
-                         names_to = "estat",
-                         values_to = "valores") %>% 
-            pivot_wider(names_from = "grupo",
-                        values_from = "valores")
-        ))
+        bd1 <-
+          suppressMessages(suppressWarnings(
+            dados %>% 
+              mutate(grupo = cut(get(varGrupo), quantile(get(varGrupo), probs = 0:ngrupos/ngrupos),
+                                 include.lowest = T,
+                                 labels = paste0("p", 1:ngrupos)))
+          )) -> bd1
+        
+        res1 <-
+          bd1 %>% 
+          group_by(grupo) %>% 
+          summarise(across(varInteresse, list(mean = mean, sd = sd))) %>% 
+          pivot_longer(cols = -grupo,
+                       names_to = "estat",
+                       values_to = "valores") %>% 
+          pivot_wider(names_from = "grupo",
+                      values_from = "valores")
+        
+        VarMedia1 <- 2    
+        if(is.null(VarMedia1)) {
+          grp1 <- bd1 %>% filter(grupo == paste0("p", 1)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+        } else {
+          grp1 <- bd1 %>% filter(grupo == paste0("p", VarMedia1)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+        }
+        
+        VarMedia2 <- 5
+        if(is.null(VarMedia2)) {
+          grp2 <- bd1 %>% filter(grupo == paste0("p", ngrupos)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+        } else {
+          grp2 <- bd1 %>% filter(grupo == paste0("p", VarMedia2)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+        }
+        
+        res2 <- cntdd.TesteMedia(grp1, grp2)
+        
+        bd1 %>% dplyr::select(contains(varInteresse), grupo) -> bd3
+        
+        formula <- paste(names(bd3), collapse = "~")
+        mod1 <- lm(formula, data = bd3)
+        mod.av <- aov(mod1)
+        TkTest <- TukeyHSD(mod.av)$grupo
+        
+        resultado <- list(MediaDesvioGrupo = res1,
+                          TesteMedia = res2,
+                          Tukey = TkTest)
+        
+        
+        return(resultado)
+        
       }
+    
   )
+
+
+
