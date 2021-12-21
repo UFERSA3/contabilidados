@@ -29,7 +29,7 @@ cntdd.carregaPacotes <- function (
   pcts = c("tidyverse", "data.table", "readxl",
            "tseries", "ggplot2", "ggrepel",
            "quantmod", "PerformanceAnalytics",
-           "jsonlite", "xts")){
+           "jsonlite", "xts", "nortest")){
 
 # # # # # # # #  Instruções  # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
