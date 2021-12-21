@@ -431,7 +431,6 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
 }
 
 
-cntdd.TesteMedia(rnorm(200), rnorm(200))
 cntdd.CNPJ_Mascara <- function(cnpj){
   
   ################ Instruções #####################################################
