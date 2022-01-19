@@ -667,7 +667,7 @@ cntdd.novos <-
           grp2 <- bd1 %>% filter(grupo == paste0("p", VarMedia2)) %>% dplyr::select(contains(varInteresse)) %>% pull()
         }
         
-        res2 <- cntdd.TesteMedia(grp1, grp2)
+        res2 <- cntdd.TesteMedia(grp2, grp1)
         
         bd1 %>% dplyr::select(contains(varInteresse), grupo) -> bd3
         
@@ -678,7 +678,7 @@ cntdd.novos <-
         
         resultado <- list(MediaDesvioGrupo = res1,
                           TesteMedia = res2,
-                          Tukey = TkTest)
+                          Tukey = round(TkTest, 4))
         
         
         return(resultado)
@@ -686,6 +686,5 @@ cntdd.novos <-
       }
     
   )
-cntdd.novos$MediaDesvioGrupo(df = iris,varGrupo =  "Sepal.Width", varInteresse = "Sepal.Length", ngrupos = 3)
 
 
