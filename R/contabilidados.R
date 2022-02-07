@@ -431,7 +431,7 @@ cntdd.TesteMedia <- function(a, b, pvalor = 0.05){
 }
 
 
-cntdd.CNPJ_Mascara <- function(cnpj){
+cntdd.CNPJ_Mascara <- function(cnpj, completo = T){
   
   ################ Instruções #####################################################
   # Objetivo: Gerar a máscara do CNPJ quando o CNPJ vier como numero
@@ -440,19 +440,32 @@ cntdd.CNPJ_Mascara <- function(cnpj){
   # Output: CNPJ em formato string com a máscara de 18 dígitos
   #################################################################################
   
-  qdeCar <- nchar(cnpj)
+  CNPJ <- paste(stringr::str_extract_all(cnpj, "[0-9]+")[[1]], collapse = "")
+  
+  if(nchar(CNPJ) > 14){
+    CNPJ <- "99999999999999"
+  }
+  
+  qdeCar <- nchar(CNPJ)
+  
+  if(qdeCar > 14) stop("Numero de caracteres numéricos supera os 14 caracteres do CNPJ")
+  
   cnpj1 <- paste0(substr("00000000000000", 1, (14-qdeCar)),
-                  substr(cnpj, 1, qdeCar-2), "-",
-                  substr(cnpj, qdeCar-1, qdeCar))
+                  substr(CNPJ, 1, qdeCar-2), "-",
+                  substr(CNPJ, qdeCar-1, qdeCar))
   cnpjFinal <- paste0(substr(cnpj1, 1, 2), ".",
                       substr(cnpj1, 3, 5), ".",
                       substr(cnpj1, 6, 8), "/",
                       substr(cnpj1, 9, 15))
+  cnpjNum <- paste(stringr::str_extract_all(cnpjFinal, "[0-9]+")[[1]], collapse = "")
   
-  return(cnpjFinal)
+  if (completo) {
+    return(cnpjFinal)
+  } else {
+      return(cnpjNum)
+  }
   
 }
-
 
 
 cntdd.utils <-
@@ -648,7 +661,7 @@ cntdd.novos <-
         res1 <-
           bd1 %>% 
           group_by(grupo) %>% 
-          summarise(across(varInteresse, list(mean = mean, sd = sd, qdeObs = length))) %>% 
+          summarise(across({{varInteresse}}, list(mean = mean, sd = sd, qdeObs = length))) %>% 
           pivot_longer(cols = -grupo,
                        names_to = "estat",
                        values_to = "valores") %>% 
@@ -656,15 +669,15 @@ cntdd.novos <-
                       values_from = "valores")
         
         if(is.null(VarMedia1)) {
-          grp1 <- bd1 %>% filter(grupo == paste0("p", 1)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+          grp1 <- bd1 %>% filter(grupo == paste0("p", 1)) %>% dplyr::select(contains({{varInteresse}})) %>% pull()
         } else {
-          grp1 <- bd1 %>% filter(grupo == paste0("p", VarMedia1)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+          grp1 <- bd1 %>% filter(grupo == paste0("p", VarMedia1)) %>% dplyr::select(contains({{varInteresse}})) %>% pull()
         }
         
         if(is.null(VarMedia2)) {
-          grp2 <- bd1 %>% filter(grupo == paste0("p", ngrupos)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+          grp2 <- bd1 %>% filter(grupo == paste0("p", ngrupos)) %>% dplyr::select(contains({{varInteresse}})) %>% pull()
         } else {
-          grp2 <- bd1 %>% filter(grupo == paste0("p", VarMedia2)) %>% dplyr::select(contains(varInteresse)) %>% pull()
+          grp2 <- bd1 %>% filter(grupo == paste0("p", VarMedia2)) %>% dplyr::select(contains({{varInteresse}})) %>% pull()
         }
         
         res2 <- cntdd.TesteMedia(grp2, grp1)
