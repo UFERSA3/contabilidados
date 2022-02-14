@@ -682,7 +682,7 @@ cntdd.novos <-
         
         res2 <- cntdd.TesteMedia(grp2, grp1)
         
-        bd1 %>% dplyr::select(contains(varInteresse), grupo) -> bd3
+        bd1 %>% dplyr::select(contains({{varInteresse}}), grupo) -> bd3
         
         formula <- paste(names(bd3), collapse = "~")
         mod1 <- lm(formula, data = bd3)
