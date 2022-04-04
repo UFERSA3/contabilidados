@@ -1,13 +1,14 @@
 ---
-title: "CURSO BÁSICO DE R COM ECONOMATICA"
+title: |
+  ![](images/todosProjetos.png){width=3in}  
+  CURSO BÁSICO DE R COM ECONOMATICA
 author: "Projeto contabiliDados"
-date: "Curso de Ciências Contábeis - Área de Finanças"
+date: "Curso de Ciências Contábeis (UFERSA) - Área de Finanças"
 geometry: margin=1in
 bibliography: dados/library.bib
 header-includes:
 - \usepackage{titling}
 - \usepackage{ulem}
-- \pretitle{\begin{center}\LARGE\includegraphics[width=12cm]{images/todosProjetos.png}\\[\bigskipamount]}
 - \posttitle{\end{center}}
 - \renewcommand{\contentsname}{Sumário}
 - \renewcommand{\refname}{Referências}
@@ -18,20 +19,24 @@ header-includes:
 - \fancyhf{}
 - \lhead{ \fancyplain{}{Curso Básico de R com Economatica} }
 - \rhead{ \fancyplain{}{Ciências Contábeis - Área de Finanças} }
-- \lfoot{ \fancyplain{}{@2022 Projeto ContabiliDados} }
+- \lfoot{ \fancyplain{}{@2022 Projeto contabiliDados} }
 - \rfoot{ \fancyplain{}{\thepage} }
+- \setlength{\headheight}{12.80502pt}
 - \renewcommand{\headrulewidth}{1pt}
 - \renewcommand{\footrulewidth}{1pt}
 output: 
   pdf_document:
-    toc: false
-    toc_depth: 2
+    fig_crop: no
+    toc: true
+    toc_depth: 3
     highlight: tango
     fig_height: 3
     fig_caption: false
     citation_package: default
+    number_sections: true
 editor_options: 
   chunk_output_type: console
+urlcolor: blue
 ---
 
 \newpage
@@ -48,7 +53,7 @@ Esse projeto se justifica pela oportunidade de sumarizar os dados públicos de e
 
 Esse projeto, consiste, portanto, em acompanhar o desempenho e atividades de entidades públicas e privadas, por meio de consolidação de dados divulgados de forma dispersa, trazendo para a sociedade indicadores sumarizados sobre a gestão pública e corporativa no Brasil. Ao mesmo tempo cuida em manter bancos de dados disponíveis para futuras pesquisas de interesse público e privado com divulgação de índices de sentimento e indicadores.
 
-### OBJETIVOS
+## OBJETIVOS
 
 -   Mapear bases de dados disponíveis na web;
 -   Organizar a base central de dados orçamentários, financeiros, contábeis e de gestão de entidades públicas e privadas;
@@ -56,7 +61,7 @@ Esse projeto, consiste, portanto, em acompanhar o desempenho e atividades de ent
 -   Disponibilizar dados à comunidade;
 -   Treinar docentes, discentes e membros da sociedade em geral com interesse em fazer uso da ciência de dados para avaliar a gestão pública e privada no Brasil.
 
-### METODOLOGIA
+## METODOLOGIA
 
 Após mapear as fontes de dados disponíveis e confiáveis, serão direcionados os tipos de dados a serem explorados (financeiros, fiscais, previdenciários, gestão, dentre outros). Com base na definição dos dados a serem explorados será definida a política do observatório, iniciando com a criação de rotinas de extração, tratamento e divulgação dos dados.
 
@@ -70,21 +75,21 @@ A etapa seguinte consiste em calcular indicadores e/ou índices de gestão, cont
 
 # SOBRE ESTE TREINAMENTO
 
-### EMENTA
+## EMENTA
 
 Apresentação da plataforma Economatica. Utilização das ferramentas screener e matrix. Geração de bancos de dados em excel em séries temporais e dados em painel. Apresentação da plataforma R e R Studio. Operações básicas no R. Tipos de objeto. Importação de planilhas e dados externos. Geração de banco de dados. Estatística descrita com valores e gráficos.
 
-### OBJETIVOS
+## OBJETIVOS
 
 -   Estimular os alunos a utilizar ferramentas de análise de dados em atividades relacionadas à área contábil;
 -   Capacitar os alunos na ferramenta R Programming;
 -   Abordar, na prática, conceitos de contabilidade, estatística e análise de dados.
 
-### METODOLOGIA
+## METODOLOGIA
 
 Serão utilizados dados da plataforma Economatica para geração de indicadores contábeis básicos com o intuito de demonstrar usos básicos da plataforma R Programming. Os dados gerados serão importados, tratados e analisados, propiciando a interação entre os alunos e as ferramentas estudadas.
 
-### MATERIAL COMPLEMENTAR
+## MATERIAL COMPLEMENTAR
 
 A apresentação desse treinamento pode ser acessada pelo canal do youtube do 
 Projeto UFERSA3 - Liga de Mercado Financeiro da UFERSA:
@@ -136,7 +141,11 @@ Prof. **Alexsandro** Gonçalves da Silva **Prado**
 **Kewerson** Alves **Cunha**
 
 &nbsp; [**E-mail** - kewerson.cunha\@alunos.ufersa.edu.br](mailto:kewerson.cunha@alunos.ufersa.edu.br) |
+[**Lattes** - lattes.cnpq.br/3158464950144943](http://lattes.cnpq.br/3158464950144943)
+
+&nbsp; [**Github** - github.com/nosrewek](https://github.com/nosrewek) |
 [**Linkedin** - br.linkedin.com/in/kewerson-alves-cunha](https://www.linkedin.com/in/kewerson-alves-cunha-15052000)
+
 
 &nbsp;
 
@@ -203,7 +212,10 @@ formato por ser mais usual.
 
 **Passo 1:** Acessar a plataforma Economatica
 
-![Economatica](images/eco_login.png)
+
+```{r echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics('images/eco_login.png')
+```
 
 Conforme pode ser visto na figura acima, após o usuário acessar o site
 [*www.economatica.com*](www.economatica.com), clica em *Login* para que apareça
@@ -214,30 +226,41 @@ UFERSA terá acesso ao economatica (limite de 50 acessos simultâneos).
 
 **Passo 2:** Tela Inicial
 
-![Economatica](images/eco_inicio.png)
+```{r echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics('images/eco_inicio.png')
+```
 
 Após login, aparecerá a tela inicial. Neste treinamento, vamos nos concentrar em 
 duas opções: Screening e Matrix (ver destaque). Vamos iniciar pelo Screening.
 
 **Passo 3:** Screening - Escolha da Tela Pré-Formatada
 
-![Economatica](images/eco_screenerBasicoAcoes.png)
+```{r echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics('images/eco_screenerBasicoAcoes.png')
+```
 
 O Economatica dispõe de várias de várias telas pré-formatadas. Vamos usar o
 screening pré-formatado "Básico". Nesse screening serão selecionadas as empresas
 que *negociam ações na B3* (Brasil, Bolsa, Balcão) e que *estejam ativas*. Basta
 escolhar a aba "Ações" e clicar no botão "ABRIR", conforme figura acima.
 
+
+
 **Passo 4:** Screening - Escolha de dados
 
-![Economatica](images/eco_screenerEscolheDado.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/eco_screenerEscolheDado.png')
+```
 
 Após aberto o screening, clica na opção "Criar Coluna" para que apareça a
 janela com várias opções. Vamos usar a opção "Dados Cadastrais".
 
 **Passo 5:** Screening - Seleciona Segmento
 
-![Economatica](images/eco_screenerSelecionaSegmento.png)
+```{r echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics('images/eco_screenerSelecionaSegmento.png')
+```
+
 
 Clica em "Dados Cadastrais" -> "Ações -> "Segmento Bovespa".
 
@@ -247,14 +270,18 @@ seguir.
 
 **Passo 6:** Screening - Filtra Segmento
 
-![Economatica](images/eco_inserirFiltro.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/eco_inserirFiltro.png')
+```
 
 Como a proposta é estudar empresas do setor elétrico, vamos filtrar apenas
 empresas do segmento "Energia Elétrica". Para isso, basta clicar com o botão
 direito do mouse no título da coluna "Segmento Bovespa" e escolhar a opção do
 menu "Inserir filtro baseado nesta coluna". Aparecerá a seguinte tela:
 
-![Economatica](images/eco_aplicaFiltro.png)
+```{r echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics('images/eco_aplicaFiltro.png')
+```
 
 O primeiro procedimento nesta tela é clicar na opção "Mostrar apenas uma 
 classe por empresa (a de maior volume no último mês)". Esta opção faz com que
@@ -272,7 +299,9 @@ segmento "Energia Elétrica".
 Após clicar "OK", o screening terá apenas um código por empresas e apenas as
 empresas do segmento "Energia Elétrica", conforme figura abaixo:
 
-![Economatica](images/eco_verFiltradas.png)
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/eco_verFiltradas.png')
+```
 
 É possível observar a lista de empresas apenas do segmento selecionado e apenas
 uma classe por empresa. Temos, portanto, a lista de empresas definidas para
@@ -283,12 +312,15 @@ este treinamento: empresas do setor elétrico.
 Sem fechar o screening, escolha outro serviço clicando no botão com sinal de "+"
 indicado na figura abaixo:
 
-![Economatica](images/eco_mudaOpcao.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/eco_mudaOpcao.png')
+```
 
 Voltaremos para a tela mostrada no *Passo 2*. Selecione Matrix. Deverá aparecer uma tela, conforme abaixo:
 
-
-![Economatica](images/eco_matrixVazio.png)
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/eco_matrixVazio.png')
+```
 
 Essa é a estrutura de um matrix vazio. É possível observar que já há a coluna 
 "Data" e a opção de "Criar coluna". Na coluna "Data", teremos a série de tempo
@@ -297,7 +329,9 @@ na frequência que escolhermos (diária, mensal, trimestral, anual). Essa escolh
 procedimento dessa etapa. Clique no botão com três traços para aparecer a tela
 abaixo:
 
-![Economatica](images/eco_configuraData.png)
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/eco_configuraData.png')
+```
 
 Podemos escolher, dentre outras opções, o período inicial e final da série e a
 frequência. Neste exemplo, escolhemos como inicio 01/01/2018 e fim 31/12/2020.
@@ -311,7 +345,9 @@ período estabelecido.
 Após configurada a coluna "Data", vamos configura a coluna da conta. Clique em
 "Criar Coluna" para aparecer a tela abaixo:
 
-![Economatica](images/eco_selecionaContaMatrix.png)
+```{r echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics('images/eco_selecionaContaMatrix.png')
+```
 
 A configuração consistem em escolher a conta desejada. Na figura acima estamos
 selecionando a conta "Ativo Circulante", conforme essa sequência:
@@ -320,12 +356,16 @@ clique em "demonsrativos financeiros" -> IndComBR -> Ativo Circulante
 
 Após clicar em "Ativo Circulante", aparecerá a tela abaixo:
 
-![Economatica](images/eco_configuraContaSelecionada.png)
+```{r echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics('images/eco_configuraContaSelecionada.png')
+```
 
 Deixe a opção "corrente" selecionada. Isso servirá para gerarmos o banco de dados
 pretendido. Clique em "OK" e o resultado final será:
 
-![Economatica](images/eco_matrixFinal.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/eco_matrixFinal.png')
+```
 
 Observamos a coluna "Data" com o período de 2018 a 2020, conforme configuração.
 Na tela acima, além do Ativo Circulante (AtvCir) também vemos a conta (coluna)
@@ -339,11 +379,15 @@ para o excel.
 Na tela do Matrix, clique no botão com três traços (destaque) e clique na opção
 "Exportar (XLS, XLSX, PDF, TXT, CSV, JSON)".
 
-![Economatica](images/eco_preparaExportacao.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/eco_preparaExportacao.png')
+```
 
 Após clicar, aparecerá a seguinte tela:
 
-![Economatica](images/eco_executaExportacao.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/eco_executaExportacao.png')
+```
 
 Neste exemplo, vamos gerar um arquivo com extensão "CSV". Seguindo a sequência
 da tela acima:
@@ -364,7 +408,9 @@ Verifique em qual pasta do seu computador o Economatica salvou o arquivo com o
 nome indicado (nosso exemplo foi "arquivoTreinamento.csv") e o abra. O resultado
 é apresentado na figura abaixo:
 
-![Economatica](images/eco_verExcel.png)
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/eco_verExcel.png')
+```
 
 É um arquivo cujas colunas são separadas por vírgulas. Então temos a coluna
 "Ativo" com os códigos da empresas (o texto <XBSP> vem na configuração do
@@ -379,7 +425,7 @@ base de dados gerada.
 \newpage
 
 # R PROGRAMMING
-
+## Contexto
 A linguagem R surgiu da necessidade de pesquisadores de estatística tratarem e
 manipularem dados. Em nossas pesquisas científicas utilizamos o R com bastante
 frequência. Embora não seja uma das linguagens mais usadas
@@ -415,21 +461,29 @@ acesse [cran.r-project.org/mirrors.html](https://cran.r-project.org/mirrors.html
 
 Clicamos no espelho (mirror) da UFPR, no Brasil:
 
-![mirror](images/mirrors.png)
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/mirrors.png')
+```
 
 Após clicar, aparecerá a opção de download:
 
-![downloadR](images/downloadR.png)
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/downloadR.png')
+```
 
 Selecionamos, para este exemplo, o download para windows. Mas também é possível
 instalar o R para Linux e macOS. Deve aparecer a seguinte tela:
 
-![primeiraVezR](images/primeiraVezR.png)
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/primeiraVezR.png')
+```
 
 Clique em Instalar R pela primeira vez ("install R for the first time") e
 aparecerá a seguinte tela:
 
-![downloadR2](images/downloadR2.png)
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/downloadR2.png')
+```
 
 Esta tela mostra a versão atual do sistema (4.1.3, nesse exemplo). Clique em
 "Download R 4.1.3 for Windows". Durante a instalação será perguntado se instala
@@ -447,11 +501,15 @@ vamos para o Passo 2.
 Acesse o site de download do R Studio
 [www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/). Nesse site, procute a opção destacada na figura abaixo:
 
-![downloadRStudio](images/downloadRStudio.png)
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/downloadRStudio.png')
+```
 
 Clicamos no botão "Download" e será apresentada a seguinte tela:
 
-![botalDownload](images/botaoDownloadRStudio.png)
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/botaoDownloadRStudio.png')
+```
 
 Será baixado o executável. Instala tudo sem alterar configurações.
 
@@ -460,534 +518,1100 @@ Agora é só usar o R Studio!!!
 
 ## Conhecendo o R Studio
 
+Ao abrir o R Studio, o usuário iniciante deverá observar que existem 4 frames
+(partes) que dividem o R Studio. Elas podem ser customizadas, então cada
+usuário pode modificar ao seu estilo. Neste treinamento, será demonstrada a
+tela, conforme configuração do usuário que preparou o material. Contudo, todos
+os menus e itens são os mesmos. A única que muda é a disposição na tela. Vejamos
+uma tela inteira:
 
-
-## Opera??es aritm?ticas
-
-Voc? pode utilizar o R como uma calculadora. Veja abaixo:
-
-```{r}
-# Adicao
-1 + 3
-# Subtracao
-3 - 1
-# Divisao
-4 / 2
-# Multiplicacao
-4 * 2
-# Modulo
-5 %% 2
+```{r echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics('images/telaRStudioCompleta.png')
 ```
 
-## Tipos de dados em R
+Destacamos os pontos que apresentaremos neste treinamento, mesmo que usando
+somente alguns deles. Há um menu destacado na parte superior, um botão (list)
+no canto superior direito com o nome "Project (none)", referente a projetos e,
+quatro frames com pontos destacados. O menu superior será percorrido durante o
+treinamento e suas várias possibilidades não serão abordadas nesse treinamento. 
+O botão de projetos também não será utilizado, mas trata-se da possibilidade de
+trabalharmos com vários projetos, utilizando controle de versões de cada um.
 
-R trabalha com v?rios tipos de dados. Alguns dos tipos mais b?sicos para come?ar s?o:
+Observe que no canto superior direito de todos os frames tem dois botões que
+servem para minimizar o maximizar a janela. Caso algum frame tenha sumido de
+seu computador, tenha calma! Pode apenas ter sido minimizado. Basta maximizar ou
+restaurar o tamanho do frame!
 
--   Valores decimais como 4.5 s?o chamados num?ricos.
+Os quatro frames serão apresentados a seguir, individualmente:
 
--   N?meros naturais como 4 s?o chamados n?meros inteiros. Os n?meros inteiros tamb?m s?o num?ricos.
+### **Frame 1** Script
 
--   Valores booleanos\* ( TRUE ou FALSE) s?o chamados l?gicos.
-
--   Os valores de texto (ou string) s?o chamados de caracteres.
-
-    \*Em ci?ncia da computa??o, boolean ? um tipo de dado primitivo que possui dois valores, que podem ser considerados como 0 ou 1, falso ou verdadeiro.
-
-```{R}
-# Numerico
-
-v_numerico <- 19
-print(v_numerico)
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/telaRStudioframe1.png')
 ```
 
-```{r}
-# Caractere
+Ao abrir o R studio esse frame pode não está aberto. Para tal, clica-se no
+menu *File -> New File -> R Script*. Esse espaço corresponde a um bloco de notas
+para que possamos colocar todos os nossos códigos. O interpretador da linguagem
+R executará todos os comandos apresentados. Os resultados dos comandos serão7
+apresentados nos demais frames.
 
-v_caracter <- "Kleber Formiga"
-print(v_caracter)
+Algumas particularidades:
 
-# Observe que as aspas indicam que "Kleber Formiga" e um caractere.
-```
+* Se colocarmos um hashtag (#) no início de um comando o interpretador entenderá
+como um comentário. Não executará! Os comentários são importantes para que outros
+usuários possam dar sequência ao trabalho iniciado - Especialmente quando se
+trabalha com conjunto.
+* Se fizermos alguma operação matemática, o interpretador calculará e mostrará
+o resultado no console (próximo frame que apresentaremos).
+* Se colocarmos um nome (sem espaços ou acentos e não iniciando com números),
+seguidos do símbolo igual (=) ou (<-) e depois escrevermos um código válido,
+o R guardará essa informação para uso posterior.
 
-```{r}
-# L?gica
+Vejamos um exemplo (Copiem o código no Script, selecionem o comando desejado ou
+todo o código e, em seguida, clique nas teclas Ctrl+Enter do seu teclado):
 
-v_logica <- TRUE
+```{r, echo=TRUE}
+
+# Aqui fica um comentário. Exemplo: calculando quanto é 2+2
+
+2+2
+
+# Agora vou atribuir o resultado a um objeto chamado total
+
+total <- 2+2
 
 # ou
 
-v_logica2 <- T
+total = 2+2
 
-# Observe que R diferencia maiusculas de minusculas!
+# O total não aparecerá no console, mas aparecerá na aba "Environment". Lembremos
+# que o R guarda essa informação quando usamos "=" ou "<-" após um termo seguido
+# de um código válido
+
 ```
 
-## Vari?vel ou Objeto
+### **Frame 2** Console
 
-Um conceito b?sico em programa??o (estat?stica) ? chamado de vari?vel. Uma vari?vel permite que voc? armazene um valor (por exemplo, 4) ou um objeto (por exemplo, uma descri??o da fun??o) em R. Mais tarde, dessa forma, voc? pode usar o nome dessa vari?vel para acessar facilmente o valor ou o objeto que est? armazenado nessa vari?vel.
-
-#### Criando objetos
-
-```{r}
-x <- 10 # observe que x recebera o valor 10
-15 -> y # observe que y recebera o valor 15
-w = 20  # observe que w recebera o valor 20
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/telaRStudioframe2.png')
 ```
 
-## Vetor
+Primeiro destacamos uma curiosidade: cada versão do R possui um nome associado
+a uma tirinha do Charlie Brown (coisa dos criadores nerds da plataforma - nós
+gostamos disso... rsrs). Uma lista das versões com as tirinhas foram compiladas
+no site [livefreeordichotomize.com/2017/09/28/r-release-names/](https://livefreeordichotomize.com/2017/09/28/r-release-names/) que não estava atualizada quando preparamos
+este material. Encontramos a tirinha referente ao "Kick Things" no Twitter
+[twitter.com/WomenInStat/status/1449462277581721601?s=20&t=tWTsKDsW4g23NAuD5Fsd1g](https://twitter.com/WomenInStat/status/1449462277581721601?s=20&t=tWTsKDsW4g23NAuD5Fsd1g).
+Veja abaixo:
 
-Os vetores s?o matrizes de uma dimens?o que podem conter dados num?ricos, dados de caracteres ou dados l?gicos. Em outras palavras, um vetor ? uma ferramenta simples para armazenar dados. Em R, voc? cria um vetor com a fun??o combinar "c()". Voc? coloca os elementos do vetor separados por v?rgula entre par?nteses. Por exemplo:
-
-```{r}
-a <- c(1, 2, 3)
+```{r echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics('images/kickThings.png')
 ```
 
-```{r}
-b <- c("a", "b", "c")
+E ai... você está mais pra Lucy ou para Charlie Brown? No projeto contabiliDados
+temos as duas personalidades. Voltando...
+
+Destacamos, também, o sinal ">" . É o local onde sairão os resultados dos comandos
+que colocamos no script. Façam o teste e vejam:
+
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/resultadoConsole.png')
 ```
 
-Lembre-se: R diferencia mai?sculas de min?sculas!
+Esse resultado aparecerá no seu console após selecionar o comando "2+2" e aperta
+Ctrl+Enter. Os comandos podem ser feitos direto no console também, porém não ficam
+registrados para um uso posterior. Na grande maioria das vezes registramos tudo
+no Script. Vai que precise depois!! Vamos ao próximo frame.
 
-```{r}
-c <- c(TRUE, FALSE, TRUE)
+### **Frame 3** Local para registro
+
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('images/telaRStudioframe3.png')
 ```
 
-## Matriz
+Temos quatro abas em destaque um botão destacado com R/Python para demonstrar
+que o R Studio também suporta a linguagem python (também suporta java, bash...).
+Então um código poderia ser usado com R e Python ao mesmo tempo. Nunca precisamos
+usar essa funcionalidade (ainda!). Agora vamos aos itens das abas:
 
-Em R, uma matriz ? uma cole??o de elementos do mesmo tipo de dados (num?rico, caractere ou l?gico) organizados em um n?mero fixo de linhas e colunas. Como voc? est? trabalhando apenas com linhas e colunas, uma matriz ? chamada bidimensional. Voc? pode construir uma matriz em R com a fun??o matrix(). Considere o seguinte exemplo:
+* **Environment** onde ficarão registrados todos os objetos criados no script
+(ou no console, se fizer diretamente por lá). Os objetos são criados ao se
+atribuir um nome, colocar "=" ou "<-" e, em seguida, colocar um comando válido.
+Ao criar um objeto, seu resultado não aparece no console, mas sim no Environment.
 
-```{r}
-my_matrix <- matrix(1:9, byrow = TRUE, nrow = 3)
+* **History** onde ficam registrados todos os comandos executados.
 
-print(my_matrix)
+* **Connections** usado para fazer conexões de bancos de dados (SQL, por exemplo).
+
+* **Tutorial** contém diversos tutoriais para uso do R ou R Studio. Muito útil!
+Está em inglês (nada como o google tradutor, mas vamos praticar o inglês também!).
+
+A medida que formos usando o R Studio aprenderemos mais sobre esses itens.
+
+### **Frame 4** Utilitários
+
+```{r echo=FALSE, out.width='70%', fig.align='center'}
+knitr::include_graphics('images/telaRStudioframe4.png')
 ```
 
-matrix(data, byrow = TRUE, nrow = 3, ncol = 3)
+Destacamos cinco abas e um caminho. O caminho é o local do computador onde essa
+imagem foi feita (D: -> repos -> projects -> contabilidados). Recomendamos que
+estabeleçam um diretório específico para cada projeto. Esse arquivo PDF com este
+curso foi gerado com código R que está dentro da pasta tutoriais, por exemplo.
+Seguem alguns comentários sobre cada aba.
 
--   data = fonte dos dados;
--   byrow = indica se a matriz ser? preenchida por linhas ou colunas. Usa-se TRUE ou FALSE, o padr?o ? TRUE;
--   nrow = n?mero de linhas desejadas; e
--   ncol = n?mero de colunas desejadas.
+* **Files** simula o windows explorer para identificação e localização das pastas
+no computador. Ao invés de localizar arquivos para renomear ou usar sua localização
+no windows explorer, poderemos usar essa aba (é como fazemos no projeto
+contabiliDados).
 
-## Fatores
+* **Plots** é o local onde aparecerão os gráficos criados pelos scripts.
 
-Conceitualmente, fatores s?o vari?veis em R que assumem um n?mero limitado de valores diferentes; essas vari?veis s?o frequentemente referidas como vari?veis categ?ricas. Um dos usos mais importantes dos fatores est? na modelagem estat?stica; como as vari?veis categ?ricas entram em modelos estat?sticos de maneira diferente das vari?veis cont?nuas, o armazenamento de dados como fatores garante que as fun??es de modelagem tratem esses dados corretamente. Para criar um fator, usa-se a fun??o factor(). Veja estes exemplos:
+* **Packages** ainda não falamos deles, mas são as funções programadas para as
+mais diversas atividades. Nessa aba é possível ver todas as funções (chamamos de
+pacotes) instaladas. Também usamos essa aba para atualizar os pacotes existentes
+ou instalar novos pacotes. O R já possui vários pacotes por padrão (chamamos de
+funções base). Neste treinamento usaremos apenas os pacotes base do R, portanto,
+não precisaremos instalar ou requerer qualquer pacote.
 
-1.  
+* **Help** quem não precisa de uma help? É nessa aba que podemos fazer buscas
+sobre ajudas nos pacotes. Na realidade, recomendamos que sejam observadas as
+documentações de cada pacote que usem.
+
+* **Viewer** Nesse local são aprensentadas tabelas e gráficos em formato HTML.
+
+
+## Linguarem R no R Studio
+
+A partir de agora, os comandos destacados na parte cinza do PDF poderão ser
+copiados para o script. Fazendo isso, ao invés de digitar todo o código,
+diminuiremos a chance de erro, além de fazermos uma replicação fiel do
+treinamento.
+
+### Operações aritméticas
+
+Digitem o código abaixo e executem (Ctrl+Enter). Observem que os resultados
+aparecem no console.
 
 ```{r}
+
+# Adicão
+1 + 3
+# Subtração
+3 - 1
+# Multiplicação
+4 * 2
+# Divisão
+4 / 2
+# Resto da Divisão (Módulo)
+5 %% 2
+
+```
+
+Para fins de exemplo, vamos utilizar um desses casos por meio de objetos
+(observem o uso de comentários na frente de cada código - é útil):
+
+```{r}
+
+# criaremos o objeto "pizzas" para indicar a quantidade de pizzas e o objeto
+# "criancas" para indicar a quantidade de crianças.
+# Depois de criados, esses objetos aparecem na aba Environment (confira!)
+
+pizzas <- 2 # usamos <- para criar o objeto
+criancas = 7 # usamos = para criar o objeto
+
+# No pedido as pizzas vieram com 8 fatias cada, então vamos criar o objeto
+# fatias
+
+fatias <- pizzas * 8 # Usamos a multiplicação
+
+# vamos ver quantas fatias temos para as 7 criaças
+
+fatias
+
+# A regra da casa é que cada criança coma duas fatias. E todas farão isso!
+# Vamos criar o objeto "qdeFatiasporCrianca"
+
+qdeFatiasporCrianca <- fatias / criancas # usamos divisão
+
+# Vamos ver o resultado de quantas fatias por criança temos
+qdeFatiasporCrianca
+
+# Vimos que deu 2,28 fatias por criança. Então, se cada uma come 2 fatias,
+# quantas fatias sobram?
+
+fatias%%criancas # usamos o módulo
+
+```
+
+**Descobrimos que vão sobrar 2 fatias!**
+
+Assim seria um código comentado. Se a pessoa responsável pela casa perguntasse 
+como foi feita a divisão por criança, teríamos todos os passos registrados. Isso
+facilita a auditoria dos processos e permite replicar o código a cada vez que
+precisar dividir pizzas. Bastaria trocar os valores dos objetos "criancas" e
+"pizzas".
+
+O exemplo é simples, mas passa a noção do que podemos fazer com casos mais 
+complexos. Outro aspecto importante é saber o tipo de cada variável que estamos
+trabalhando.
+
+### Tipos de dados
+
+
+* **Numéricos** usamos para fazer operações matemáticas usando, inclusive, 
+decimais. Será identificado no R como do tipo "**numeric**".
+
+* **Inteiros** são usados para os casos de número que não tenham decimais (idade,
+por exemplo), mas que precisamos fazer operações matemáticas. Imagine a pergunta
+QUAL A IDADE MÉDIA DOS ALUNOS DA SALA? Seria tratada no R como valores inteiros,
+mas seu resultado poderia ser um dado do tipo "numeric", já que a idade média
+poderia resultar em 4,5 anos. Os inteiros serão identificados no R como do tipo
+"**integer**". Importante frisar que, por padrão, qualquer número será considerado
+do tiplo "numeric" pelo R. O usuário precisará indicar que o dados é do tipo
+inteiro.
+
+* **Booleanos** são dados lógicos que adotam valores verdadeiros (1) ou falsos (0).
+Assumem valores como TRUE ou FALSE. Também podem ser representados pelas letras
+T (TRUE) ou F (FALSE). É tratado no R como dado do tipo "logical".
+
+Internamente os valores são 0 ou 1, então se somarmos
+TRUE + FALSE, teremos 1? Vamos ver:
+
+```{r}
+TRUE + FALSE # Vimos que dá igual a 1
+
+TRUE * FALSE # Vimos que dá igual a 0
+
+```
+
+Esse conceito é importante para compreender!!! É muito demandado quando queremos
+filtrar os dados, por exemplo.
+
+* **Strings** são valores de texto, pois podemos trabalhar com unidade da
+federação (RN, CE, GO...) que são dados com texto. Assim, os dados que possuem
+texto ou são indicados serem do tipo texto são strings, identificadas no R como
+"character".
+
+Para identificar qual o tipo do dado usamos uma função chamada "class".
+
+
+```{R}
+
+# Numérico
+
+v_numerico <- 19
+class(v_numerico)
+
+# Inteiro
+
+# Usamos a função as.integer para indicar para o R que o dado é do tipo inteiro
+v_inteiro <- as.integer(v_numerico)
+class(v_inteiro)
+
+
+# Booleano
+
+v_booleano <- TRUE
+class(v_booleano)
+
+# String
+
+v_string <- "Contabilidados"
+class(v_string)
+
+
+```
+
+
+Até agora descobrimos:
+
+1. Como gerar um arquivo disposto em painel por meio da plataforma Economatica;
+2. Como é o layout da plataforma R Studio;
+3. Como fazer operações matemáticas com linguagem R;
+4. Que Ctrl+Enter executa meu código selecionado;
+5. Como atribuir valores a objetos (= ou <-);
+6. Como verificar o tipo de variável (class);
+7. sem mencionar diretamente, que as funções recebem um nome e depois temos um 
+parênteses para inserir os valores ou parâmetros. Usamos a função class e 
+as.integer até agora.
+
+Agora, vamos aprender a usar a função "c()". É uma função base do R que combina
+valores. Os valores combinados são chamados de vetor. Então podemos ter um vetor
+de nomes ou vetor de notas. Cada vetor assume um tipo de variável.
+
+Então se temos em uma sala 3 alunos: Maria, José e Pedro e sabemos que suas notas
+em matemática foram, respectivamente, 8, 9 e 10, poderíamos querer trabalhar
+esses dados para alguma decisão. Vamos usar a função "c()".
+
+De forma ineficiente, poderíamos calcular a média dos três alunos assim:
+
+```{r}
+
+(8 + 9 + 10) / 3 # ou
+
+maria <- 8
+jose <- 9
+pedro <- 10
+
+(maria + jose + pedro) / 3
+
+```
+
+Usando a função c() faremos assim:
+
+```{r}
+notasTurma <- c(8, 9, 10)
+
+class(notasTurma) # o vetor é do tipo "numeric"
+
+```
+
+
+Para saber a soma das notas da turma usaremos a função "sum()"
+
+```{r}
+sum(notasTurma) # Deu igual a 27
+```
+
+Agora se dividirmos o resultado desse comando por 3, teremos a média. Então:
+
+```{r}
+sum(notasTurma) / 3 # Opa... deu 9 mesmo!
+```
+
+Porém, precisaríamos informar a quantidade de itens quando a quantidade de notas
+fosse diferente de 3. Isso é ruim... Então usaremos a função "mean()" para
+calcular a média das notas.
+
+```{r}
+mean(notasTurma) # Muito mais prático
+```
+
+
+Agora que sabemos criar um novo objeto e entendeos o que faz a função c(),
+podemos expor outro tipo de variável: O fator.
+
+* **Fator** são dados relacionados a categorias. Facilita a sumarização de dados
+e é identificada no R como do tipo "factor". Exemplo:
+
+```{r}
+
 sexo <- c(0, 1, 1, 1, 0) # 0 Masculino, 1 Feminino
-factor(sexo)
-fsexo <- factor(sexo, levels = c(0,1), labels = c("Masculino", "Feminino")) #levels
-print(fsexo)
+
+factor(sexo) # Identificamos dois níveis (levels): 0 e 1
+
+```
+
+Se quisermos dar nomes para os níveis (chamamos os nomes de labels), criaremos o
+objeto "fsexo" como fator, indicado os labels na função "factor()". Observe que
+a função "factor()" possui alguns parâmetros: x (vetor), levels e labels). Cada
+função tem seus parâmetros específicos.
+
+```{r}
+
+fsexo <- factor(x = sexo, levels = c(0,1), labels = c("Masculino", "Feminino"))
+class(fsexo)
+
+```
+
+Com o objeto "fsexo" sendo do tipo fator, usaremos uma nova função: a "summary()".
+
+```{r}
 summary(fsexo)
 ```
 
-2.  
+A função contou a quantidade de observações estão em cada categoria (level) do
+fator. Esse conceito é muito utilizado!
+
+
+## Trabalhando com conjuntos de dados
+
+No mundo real, coletamos dados para formar bancos de dados (dados primários) ou
+coletamos dados diretamente de fonte de terceiros (dados secundários). No projeto
+contabiliDados, normalmente utilizamos dados secundários, tendo como fonte o banco
+mundial, CVM, sites diversos (web scraping), dentre vários outros. Algumas
+pesquisas também são desenvolvida com aplicação de questionários ou entrevistas
+que geram bancos de dados primários. O importante é saber que trabalhamos mais com
+conjuntos de dados do que com dados individuais como nos exemplos anteriores.
+
+Como o excel é mais conhecido de todos, vamos mostrar uma tela do excel para
+exemplificar como os conjuntos de dados podem ser trabalhados:
+
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/excelPrecosMatriz.png')
+```
+
+Suponha que esses são preços do final de cada mês (janeiro a junho) do ano de 
+2020. Observe que os dados que não estão em amarelo são todos numéricos e podem
+ser usados pelo usuários como uma matriz de valores. Então, apresentamos o nosso
+primeiro objeto do R que cuida de um conjunto de dados: A matriz.
+
+## Matriz
+
+Em R, uma matriz é uma coleção de elementos do mesmo tipo de dados (numérico, 
+caractere ou lógico) organizados em um número fixo de linhas e colunas. Vamos
+gerar uma matriz:
 
 ```{r}
 
-data = c (1,2,2,3,1,2,3,3,1,2,3,3,1)
-fdata = factor(data)
-rdata = factor(data, labels = c ("I", "II", "III"))
+# O comando diz o seguinte:
+# Gere uma matriz de 9 elementos (de 1 a 9) listadas por linha (byrow) e que
+# terá 3 linhas (nrow)
+my_matrix <- matrix(1:9, byrow = TRUE, nrow = 3)
 
-rdata
+# Vamos ver a matriz
+my_matrix
+
 ```
 
-## Data.frames
-
-Um quadro de dados ? uma tabela ou uma estrutura bidimensional do tipo matriz em que cada coluna cont?m valores de uma vari?vel e cada linha cont?m um conjunto de valores de cada coluna. Usa-se a fun??o data.frame().
-
-A seguir, est?o as caracter?sticas de um quadro de dados.
-
--   Os nomes das colunas n?o devem estar vazios.
--   Os nomes das linhas devem ser exclusivos.
--   Os dados armazenados em um quadro de dados podem ser do tipo num?rico, fator ou caractere.
--   Cada coluna deve conter o mesmo n?mero de itens de dados.
+Agora vamos criar uma matriz com os dados que temos no excel?
 
 ```{r}
-# Criando um data.frame.
-emp.data <- data.frame(
-   emp_id = c (1:5), 
-   emp_name = c("Joao Filipe","Matheus Filipe","Monica Ivo","Denes Matheus","Sanara Nadja"),
-   salary = c(3000,800,400,800,3500), 
-   
-   start_date = as.Date(c("2019-11-01", "2019-11-01", "2019-11-01", "2019-11-01",
-      "2019-11-01")),
-   stringsAsFactors = FALSE
-)
-# Imprimir:			
-print(emp.data) 
 
-# Str
+COD1 <- c(10.57, 10.63, 10.45, 10.53, 10.6, 10.04)
+COD2 <- c(20.27, 20.56, 20.93, 20.03, 20.88, 20.65)
+COD3 <- c(32.66, 32.2, 32.63, 32.45, 32.61, 32.74)
+COD4 <- c(45.56, 45.89, 45.58, 45.86, 45.65, 45.27)
 
-str(emp.data)
+# Combine (c()) os dados dos vetores COD1, COD2, COD3 e COD4
+todosCodigos <- c(COD1, COD2, COD3, COD4)
+
+# Gere uma matriz com os dados do objeto "todosCodigos". A matriz tem 4 colunas (ncol).
+precosMatriz <- matrix(todosCodigos, ncol = 4)
+
+# Para fácil identificação, vamos dar nomes às colunas e às linhas com as funções
+# "colnames" e "rownames". Veja que como temos quatro colunas, criamos um vetor 
+# com quatro nomes. Como temos seis linhas, criamos um vetor com seis meses.
+
+colnames(precosMatriz) <- c("COD1", "COD2", "COD3", "COD4")
+rownames(precosMatriz) <- c("Jan20", "Fev20", "Mar20", "Abr20", "Mai20", "Jun20")
 
 ```
+
+Vamos calcular a média de cada código (por coluna) usando a função "apply()"
+
+```{r}
+# Dissemos o seguinte: aplique na matriz "precosMatriz", por coluna (2), o valor
+# da média (mean)
+apply(precosMatriz, 2, mean)
+
+```
+
+Vamos calcular a média de cada mês (por linha) usando a função "apply()"
+
+```{r}
+# Dissemos o seguinte: aplique na matriz "precosMatriz", por linha (1), o valor
+# da média (mean)
+apply(precosMatriz, 1, mean)
+
+```
+
+Então, escolher a matriz como uma forma de analisar os dados requer o 
+aprofundamento de como manipular esse tipo de objeto. Nesse exemplo, criamos a
+matriz, mudamos o nome de suas colunas e linhas e, calculamos a média dos valores
+por linha (mês) e por coluna (código). Imagine calcular a média dos retornos diários
+de todo um ano, de 200 ações da bolsa de uma só vez! Basta seguir esse exemplo.
+
+Ainda não mostramos como importar dados direto do excel. Estamos fazendo de
+forma manual. Aguardemos... as coisas são feitas para facilitar. Mas para
+entender a facilidade, temos que ir passo a passo.
+
+
+## Data Frames
+
+Nas pesquisas da área contábil e de finanças precisamos lidar com bases que
+contemplam dados que são caracteres (strings) e valores, ao mesmo tempo. Uma
+matriz só suporta dados do mesmo tipo. Um exemplo é o banco de dados que vamos
+usar nesse treinamento. Veja a sua estrutura:
+
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('images/dataframeExemplo.png')
+```
+
+Temos a variável Ativo que corresponde ao código (string), a variável Data que
+corresponde ao ano da observação (factor ou integer ou numeric) e ativo circulante
+e passivo circulante que são variaveis numéricas (numeric). É com esse tipo de 
+banco de dados que precisamos lidar rotineiramente.
+
+A manipulação de um Data Frame difere da matriz em alguns aspectos. Vamos a um
+exemplo usando o mesmo dado que usamos para criar a matriz.
+
+Primeiramente, vamos criar o objeto "codigos" para representar o código das
+empresas. Fizemos uso da função "rep()" para repetir o código na quantidade de
+linhas que cada um possui. Como são seis meses de dados, colocamos o parâmetro
+de repetição igual a 6.
+
+```{r}
+codigos <- c(rep("COD1", 6), rep("COD2", 6), rep("COD3", 6), rep("COD4", 6))
+```
+
+Agora vamos criar o objeto mes para representar os meses. Nesse caso usamos a
+função "rep()" com o parâmetro de sequencia "1:6" para indicar os número de 1 a 6.
+Trata-se de um vetor equivalente a c(1, 2, 3, 4, 5, 6). Em seguida colocamos o
+parâmetro 4 para indicar que esses números de 1 a 6, que representam os meses de
+janeiro a junho, serão usados 4 vezes (para as 4 empresas).
+
+```{r}
+mes <- rep(1:6, 4)
+```
+
+Agora registramos os valores dos preços de cada código. São seis preços para
+cada código. Em seguida criamos o objeto "todosValores" que representa a
+combinação de todos os valores de preço registrados em cada código.
+
+```{r}
+
+COD1 <- c(10.57, 10.63, 10.45, 10.53, 10.6, 10.04)
+COD2 <- c(20.27, 20.56, 20.93, 20.03, 20.88, 20.65)
+COD3 <- c(32.66, 32.2, 32.63, 32.45, 32.61, 32.74)
+COD4 <- c(45.56, 45.89, 45.58, 45.86, 45.65, 45.27)
+
+# Combinando (c()) os dados dos vetores COD1, COD2, COD3 e COD4
+todosValores <- c(COD1, COD2, COD3, COD4)
+
+# Visualiza todos os valores
+todosValores
+
+```
+
+Agora criamos o objeto "dadosDataFrame" que será do tipo data.frame com a função
+"data.frame()"
+
+```{r}
+
+# Criamos um data frame com a primeira coluna sendo codigos, a segund coluna
+# sendo mes e a última coluna sendo precos que é igual ao objeto todosValores.
+dadosDataFrame <- data.frame(codigos, mes, precos = todosValores)
+
+# Visualiza o Data Frame
+dadosDataFrame
+
+```
+
+Agora que temos um Data Frame, **como manipular seus dados?**
+
+Antes de tudo, precisamos saber que o objeto se divite em linhas e colunas
+e suas identificações no objeto do tipo "data.frame" são dispostas entre
+colchetes, da seguinte forma: nomeDoDataFrame[LINHAS, COLUNAS]. Portanto,
+se indicarmos nomeDoDataFrame[1, 3] estamos requisitando ao R a primeira linha
+da terceira coluna do data frame. Vamos ver algumas variações:
+
+### Selecionar colunas do Data Frame
+
+```{r}
+
+# usando o cifrão para indicar qual coluna
+dadosDataFrame$precos
+
+# usando o número da coluna
+dadosDataFrame[, 3]
+
+# usando o nome da coluna
+dadosDataFrame[, "precos"]
+
+```
+
+### Selecionar linhas do Data Frame
+
+```{r}
+
+# selecionando a terceira linha
+dadosDataFrame[3,]
+
+# selecionando a terceira e quarta linha
+dadosDataFrame[3:4,]
+
+# selecionando a terceira, a quarta e a décima linha
+dadosDataFrame[c(3, 4, 10),]
+
+```
+
+Agora que sabemos selecionar colunas, vamos ver se as colunas possuem tipos
+diferentes, como propõe um Data Frame:
+
+```{r}
+
+class(dadosDataFrame$codigos)
+class(dadosDataFrame$mes)
+class(dadosDataFrame$precos)
+
+```
+
+Vimos que cada coluna possui um tipo diferente. Essa é uma propriedade do Data
+Frame: reunir dados de mais de 1 tipo.
+
+Outras duas funções importantes são "head" e "tail". Elas nos mostram as 6
+primeiras (head) e as 6 últimas (tail) observações do Data Frame.
+
+```{r}
+head(dadosDataFrame)
+
+tail(dadosDataFrame)
+```
+
+Se usarmos head(dadosDataFrame, 10), por exemplo, veremos as 10 primeiras
+observações. O mesmo se aplica se usarmos tail. Tudo dependerá da necessidade
+da informação a ser prestada.
+
+### Selecionar linhas e colunas do Data Frame
+
+Vamos misturar os conceitos vistos até agora sobre Data Frame.
+
+```{r}
+
+# selecionando a terceira linha da coluna preços
+dadosDataFrame$precos[3]
+
+# selecionando a terceira e quarta linha da coluna preços
+dadosDataFrame[3:4, 3]
+
+# selecionando a terceira, a quarta e a décima linha da coluna preços
+dadosDataFrame[c(3, 4, 10), "precos"]
+
+```
+
+### Usando dados booleanos para selecionar linhas
+
+Nesse ponto vamos utilizar operadores de comparação, seguem alguns:
+
+* **menor** <
+* **menor ou igual** <=
+* **maior** >
+* **maior ou igual** >=
+* **igual** ==
+* **diferente** !=
+* **está contido** OBJETO %in% VETOR
+* **não está contido** !OBJETO %in% VETOR
+
+Agora vamos entender o que faz um operador de comparação:
+
+```{r}
+dadosDataFrame$precos <= 15
+```
+
+Observe que as 6 primeiras obsevações tem valor "TRUE" e as demais valor "FALSE".
+As que possuem valor "TRUE" são as observações com preço menor ou igual a 15.
+
+Agora vejamos um caso em que esses valores são dispersos:
+
+
+```{r}
+dadosDataFrame$mes == 6
+```
+
+É possível ver que a cada 6 observações há um "TRUE" e as demais são "FALSE".
+
+Para notar a utilidade deste conceito, vamos observar, com a função "dim()" as dimensões do Data Frame:
+
+```{r}
+dim(dadosDataFrame)
+```
+
+O Data frame possui 24 linhas e 3 colunas. Então vamos criar um vetor de booleanos
+com 24 observações.
+
+```{r}
+# a função rep vai repetir FALSE 18 vezes.
+# Usamos T e F (forma alternativa para TRUE e FALSE)
+booleanos <- c(T, F, T, F, T, T, rep(F, 18))
+```
+
+Vamos confirmar quantas observações temos no vetor "booleanos" com a função
+"length()"
+
+```{r}
+length(booleanos)
+```
+
+Temos 24 observações. Agora a utilidade desse conceito: vamos fazer um filtro
+com "booleanos". Serão as linhas 1, 3, 5 e 6, pois são as observações que 
+possuem TRUE no objeto "booleanos".
+
+```{r}
+dadosDataFrame[booleanos, ]
+```
+
+Se entendemos este conceito, saberemos que bastará fazer uma condição com colunas
+para selecionar as linhas. Podemos querer, por exemplo, apenas os preços maiores
+que 20 que estão nos meses depois de março. Para isso usaremos duas condições:
+uma para o preços (>20) e outra para o mês (>=4). Para indicar duas condições
+podemos usar os operadores "&" (E) e "|" (OU). Vamos ver:
+
+```{r}
+dadosDataFrame[dadosDataFrame$precos > 20 & dadosDataFrame$mes >= 4,]
+```
+
+Só apareceram os meses maiores ou iguais a 4 e os preços superiores a 20 reais.
 
 ## Listas
 
-As listas s?o os objetos em R que cont?m elementos de diferentes tipos, como - n?meros, seq??ncias de caracteres, vetores e outra lista dentro dele. Uma lista tamb?m pode conter uma matriz ou uma fun??o com seus elementos. A lista ? criada usando a fun??o list () .
+Não vamos nos estender com esse outro objeto, embora muito útil e utilizado no
+projeto contabiliDados. As listas permitem reunir vários objetos de vários 
+formatos diferentes, ampliando a sua usabilidade nos códigos em geral.
 
-A seguir, ? apresentado um exemplo para criar uma lista contendo cadeias, n?meros, vetores e valores l?gicos.
+Apresentaremos apenas um exemplo. Em treinamentos posteriores falaremos mais
+sobre esse objeto.
 
-```{r}
-list_data <- list("Red", "Green", c(21,32,11), TRUE, 51.23, 119.1)
-print(list_data)
-```
-
-
-## Medidas de tend?ncia central
-
-```{r}
-# M?dia
-mean(emp.data$salary)
-```
+Vamos incluir em uma lista os dados referentes a COD1, as 6 primeiras observações
+do Data Frame "dadosDataFrame", as 10 últimas observações do Data Frame
+"dadosDataFrame" e os códigos constantes no objeto "codigos". Essa é uma boa
+hora para conferir se todos esses objetos do treinamento constam no seu
+"Enviroment" (Frame 3).
 
 ```{r}
-# Mediana
-median(emp.data$salary)
+itensLista <- list(precosCOD1 = COD1, primeirasDF = head(dadosDataFrame),
+                   ultimasDF = tail(dadosDataFrame, 10), codigos = codigos)
+
+# Vamos ver a lista
+itensLista
 ```
+
+Veja que todos os objetos criados estão dispostos dentro da lista. Para selecionar
+um deles, basta usar o cifrão.
 
 ```{r}
-matrix(1:9, byrow = TRUE, nrow = 3)
-print(matrix)
+itensLista$primeirasDF
 ```
 
-#### Caracter?sticas de uma matriz
+Assim, encerramos a parte de demonstração de objetos, funções e funcionalidades
+com o R Studio e passaremos para um caso básico, utilizando os dados gerados
+na plataforma Economatica.
 
-##### Estrutura:
+## Tratamento dos dados do Economatica
 
-matrix(data, byrow = TRUE, nrow = 3, ncol = 3)
+Nessa seção vamos utilizar conceitos já apresentados, portanto, seremos mais
+objetivos nas ações. Vamos propor as ações e realizar o respectivo comando na 
+linguagem R.
 
-data = fonte dos dados (por exemplo, um vetor); byrow = indica se a matriz ser? preenchida por linhas ou colunas. Usa-se TRUE ou FALSE, o padr?o ? TRUE; nrow = n?mero de linhas desejadas; e ncol = n?mero de colunas desejadas.
-
-#### Exemplo pr?tico
-
-Nos exerc?cios a seguir, voc? analisar? os n?meros de bilheteria da franquia Star Wars.
-
--bilheteria da franquia Star Wars
+Usaremos a função "read.csv" para ler o arquivo CSV que geramos na primeira
+parte do treinamento. O arquivo está disponível no github da UFERSA3 e pode
+ser acessado no link: PEGAR LINK NO SITE DO CURSO.
 
 ```{r}
-new_hope <- c(460.998, 314.4)
-empire_strikes <- c(290.475, 247.900)
-return_jedi <- c(309.306, 165.8)
+# Vamos ler um arquivo CSV que está localizado no endereço indicado
+dados <- read.csv("dados/arquivoTreinamento.csv")
 
 ```
 
-Primeiro deve-se construir um ?nico vetor contendo os tres vetores ja criados anteriormente, posteriomente iremos construir uma matriz com tres linhas, onde cada liha representa um filme.
+O objeto "dados" está no "Environment" (Frame 3), contendo 126 observações e
+4 variáveis. Vamos ver suas primeiras 6 observações e vamos ver (com a função
+"str()" o tipo de cada variável temos no banco de dados:
 
 ```{r}
-box_office <- c(new_hope, empire_strikes, return_jedi)
-star_wars_matrix <-  matrix(box_office, byrow=T, nrow=3)
- star_wars_matrix
+head(dados)
+
+str(dados)
 ```
 
-### 5.01 Nomeando uma matriz
+Os dados estão bem desconfigurados porque a planilha que veio do Economatica
+apresenta o termo "<XBSP> após o código da ação, o ano tem o nome da coluna data,
+e os nomes do ativo e passivo circulante estão enormes com todas as configurações
+vindas do Economatica. Além disso, os valores do ativo e passivo circulante
+estão como tipo "character".
 
-Para ajudar a lembrar o que est? armazenado star_wars_matrix, voc? gostaria de adicionar os nomes dos filmes para as linhas. Isso n?o apenas ajuda voc? a ler os dados, mas tamb?m ? ?til selecionar certos elementos da matriz.
+Os problemas com nomes das colunas e com o termo "<XBSP>" são questões da origem
+dos dados e serão tratados. Quanto ao fato de os dados de ativo e passivo
+circulante terem sido importados como tipo "character" decorre do fato de haver
+um valor igual a "-" quando não há valor. Então, o R compreende o dado como uma
+string (texto). Precisamos avisá-lo que quando tiver o valor ("-"), ele considere
+como valor não disponível ou not available (o famoso, NA). Ele é famoso nas
+análises de dados, pois é muito comum nos bancos de dados terem dados faltantes.
+Os dados faltantes são preenchidos como NA.
 
--   vetores das regi?es e t?tulos
+Vamos resolver o nome das colunas e a inclusão dos NA's no lugar dos valores "-"
+de uma só vez - com a função "read.csv()".
 
 ```{r}
-region <- c("US", "non-US")
-titles <- c("A New Hope", "The Empire Strikes Back", "Return of the Jedi")
+dados <- read.csv(
+  # Local do arquivo
+  file = "dados/arquivoTreinamento.csv",
+  # Indicando que valores "-" serão NA
+  na.strings = "-",
+  # Indicando o nome das colunas
+  col.names = c("cod", "ano", "atvCirc", "pasCirc")
+  )
 ```
 
-Use colnames() para nomear as colunas star_wars_matrix com o vetor region. Use rownames()para nomear as linhas de star_wars_matrix com o vetor titles.
+Vamos ver a nova esturutra com a função "str()" e seu tipo com a função "class()".
 
 ```{r}
-colnames(star_wars_matrix)<-region
-rownames(star_wars_matrix)<-titles
-star_wars_matrix
+str(dados)
+
+class(dados)
 ```
 
-### fun??o rowSums() e colSums5.02
-
-Em R, a fun??o rowSums()calcula convenientemente os totais para cada linha de uma matriz. Esta fun??o cria um novo vetor:
+Vimos que é um data.frame e que falta apenas remover o termo <XBSP> do código.
+Vamos usar a função "sub()" para substituir o termo indesejado por um valor vazio.
 
 ```{r}
-worldwide_vector <- rowSums(star_wars_matrix)
-worldwide_vector
+# A coluna cod será igual à coluna cod com as alterações
+dados$cod <- sub(
+  # padrão que quero localizar
+  pattern = "<XBSP>",
+  # termo que quero que substitua o padrão
+  replacement = "", 
+  # objeto que possui o padrão a ser trocado
+  x =  dados$cod)
 ```
 
-j? em colSums() calcula os totais para cada coluna de uma matriz, criando um novo vetor.
+Revendo a estrutura do banco de dados, estamos com tudo certo agora.
 
 ```{r}
-worldwide_vector2 <- colSums(star_wars_matrix)
-worldwide_vector2
+str(dados)
 ```
 
-# cria??o de outra matriz para utilizar nos exercicios pr?ticos
+Para finalizar, vamos usar a função "na.omit()" para apagar todas as observações
+que possuem valores NA (não disponível).
 
 ```{r}
-The_Phantom_Menace <- c(474.5, 552.5)
-Attack_of_the_Clones  <- c(310.7 , 338.7)
-Revenge_of_the_Sith <- c(380.3, 468.5)
-box_office2 <- c(The_Phantom_Menace, Attack_of_the_Clones, Revenge_of_the_Sith)
 
-star_wars_matrix2 <- matrix(box_office2, byrow = T, nrow = 3)
-star_wars_matrix2
-region2 <- c("US", "non-US")
-titles2 <- c("The phantom menace", "Attack of the Clones", "Revenge of the Sith")
-colnames(star_wars_matrix2) <- region2
-rownames(star_wars_matrix2) <- titles2
-star_wars_matrix2
+# O data frame "dados" será igual aos data frame "dados" sem valores NA
+dados <- na.omit(dados)
 ```
 
-### fun??o cbind() e rbind()
-
-cbind - Voc? pode adicionar uma coluna ou v?rias colunas a uma matriz com a cbind(), fun??o que mescla matrizes e / ou vetores juntos por coluna. Por exemplo:
+Vendo a estrutura
 
 ```{r}
-all_wars_matrix <- cbind(star_wars_matrix, worldwide_vector)
-all_wars_matrix
+str(dados)
 ```
 
-rbind - Voc? pode adicionar uma linha ou v?rias linhas a uma matriz com a rbind(), fun??o que mescla matrizes e / ou vetores juntos por linha. Por exemplo:
+\newpage
+
+# PROBLEMA
+
+Criamos, utilizando a plataforma Economatica, uma banco de dados com o ativo
+circulante e o passivo circulante das empresas do segmento de energia elétrica. 
+O período de coleta foi de 2018 a 2020, anualmente.
+
+De posse do banco de dados temos que ter a **criatividade** (isso mesmo:
+**CRIATIVIDADE**) para usar esses dados em benefício de alguma informação útil
+para alguma tomada de decisão. Então, temos que ter a ciência de que não há uma
+regra de como um dado tenha que ser analisado. O que precisamos é enteder o
+problema que pode ser resolvido com base naquele dado.
+
+Dessa forma, apresentamos alguns questionamentos para que possamos utilizar o
+banco de dados. Na vida real esse questionário deve ser feito pelo analista
+dos dados. Nós do contabiliDados acreditamos e defendemos a ideia de que esta
+habilidade tenha que ser incorporada ao currículo ou, pelo menos, às habilidades
+de um contador.
+
+## QUESTÕES
+
+
+1. Qual a liquidez corrente média das empresas do segmento de energia elétrica?
+Podemos dizer que essa média é concentrada ou dispersa?
+
+2. Como se distribuiu a liquidez corrente no período coletado, por ano?
+
+3. Quais as 3 empresas que possuem a maior liquidez corrente no período? Tem
+alguma que esteve entre as TOP 3 em liquidez corrente nos 3 anos?  Quanto seria
+a liquidez corrente se as empresas que estão entre as TOP 3 não estivessem na
+amostra?
+
+## RESPOSTAS
+
+**1. Qual a liquidez corrente média das empresas do segmento de energia elétrica?**
+**Podemos dizer que essa média é concentrada ou dispersa?**
+
+Para responder essa questão precisamos, primeiramente, calcular a liquidez
+corrente das empresas.
 
 ```{r}
-all_wars_matrix <- rbind(star_wars_matrix, star_wars_matrix2)
-all_wars_matrix
+
+# Dentro do Data Frame "dados" vamos criar a coluna "liqCorrente"
+# correspondente à razão entre ativo circulante e passivo circulante
+# para restringir as casas decimas a duas, vamos usar a função "round()"
+
+dados$liqCorrente <- round( dados$atvCirc / dados$pasCirc , 2)
+
+# Vendo as primeiras 6 observações
+head(dados)
+
 ```
 
-1.  Vetor num?rico:
+Agora vamos saber qual a liquidez corrente média das empresas e se essa média
+é dispersa ou concentrada.
 
 ```{r}
-a <- c(1, 2, 3)
-print(a)
+
+# Para calcular a média, vamos usar a função "mean()"
+
+mean(dados$liqCorrente)
+
 ```
 
-2.  Vetor caractere:
+A Liquidez média foi de, aproximadamente, 2,14. Então, as empresas da amostra
+possuem, em média, ativos circulantes que superam em 2,14 vezes os seus passivos
+circulantes. Passa-se a noção de que as empresas do segmento de energia elétrica
+conseguem saldar suas dívidas de curto prazo com seus ativos de curto prazo.
+
+Contudo, precisamos saber se essa média é dispersa. Caso seja dispersa, algumas
+empresas podem ter liquidez corrente muito acima ou muito abaixo de 2,14. Para
+avaliar essa dispersão vamos avaliar o desvio padrão.
 
 ```{r}
-b <- c("a", "b", "c")
-print(b)
+
+# Para calcular o desvio padrão, vamos usar a função "sd()" de standard deviation
+
+sd(dados$liqCorrente)
+
 ```
 
-Lembre-se: R diferencia mai?sculas de min?sculas! 3. Vetor l?gico:
+O desvio padrão foi de `r round(sd(dados$liqCorrente), 2)` que é superior ao valor
+de sua média (`r round(mean(dados$liqCorrente), 2)`). Isso indica uma dispersão
+alta, dados que o valor do desvio da média supera o valor da média. Para expressar
+essa dispersão em uma medida estatística, vamos usar o coeficiente de variação, 
+que consiste na razão entre o desvio-padrão e a média (deduzidos de 1 e depois
+multiplicados por 100 para termo o valor em percentual).
 
 ```{r}
-c <- c(TRUE, FALSE, TRUE)
-print(c)
+
+(sd(dados$liqCorrente) / mean(dados$liqCorrente)) * 100
+
 ```
 
-### 4.01 EXEMPLO PR?TICO
+O coeficiente de variação demonstra que o desvio-padrão é 23,36% maior que a
+média. Então a liquidez corrente das empresas do segmento de energia elétrica
+**é disperso**.
 
-Vamos imaginar que voc? decidiu coletar todos os ganhos e perdas da ?ltima semana em poquer e roleta.
+**2. Quais as 3 empresas que possuem a maior liquidez corrente no período? Tem**
+**alguma que esteve entre as TOP 3 em liquidez corrente nos 3 anos? Quanto seria**
+**a liquidez corrente de todo o período se as empresas que estão entre as TOP 3**
+**em todos os anos não estivessem na amostra?**
 
-1.  Para poquer_vetor:
-
--   Na segunda voc? ganhou R\$ 140
--   Na ter?a voc? perdeu R\$ 50
--   Na quarta voc? ganhou R\$ 20
--   Na quinta voc? perdeu R\$ 120
--   Na sexta voc? ganhou R\$ 240
-
-2.  Para roleta_vetor
-
--   Na segunda voc? perdeu R\$ 24
--   Na ter?a voc? perdeu R\$ 50
--   Na quarta voc? ganhou R\$ 100
--   Na quinta voc? perdeu R\$ 350
--   Na sexta voc? ganhou R\$ 10
-
-#### Ganhos de poquer de segunda a sexta-feira
+* Quais as 3 empresas que possuem a maior liquidez corrente no período?
 
 ```{r}
-poquer_vetor <- c(140, -50, 20, -120, 240)
+# Vamos criar um banco de dados ordenado por liquidez corrente
+# vamos usar a função "order()" na parte que corresponde às linhas do data frame
+
+dadosOrdLiquidez <- dados[order(dados$liqCorrente),]
+
+# Para ver as três empresas com maior liquidez corrente vamos ver as três
+# últimas observações do data.frame já que está ordenado em ordem crescente
+
+tail(dadosOrdLiquidez, 3)
+
+# Se quiséssemos ver apenas os códigos poderíamos fazer:
+
+tail(dadosOrdLiquidez, 3)$cod
+
 ```
 
-#### Ganhos de roleta de segunda a sexta-feira
+Vimos que as três maiores liquidez são de GPAR3, e AFLT3 (2 vezes). Para ver
+as empresas com maior liquidez corrente por ano vamos para a próxima pergunta
+desta questão.
+
+* Tem alguma que esteve entre as TOP 3 em liquidez corrente nos 3 anos?
 
 ```{r}
-roleta_vetor <- c(-24, -50, 100, -350, 10)
+# Banco de dados das empresas ordenadas por liquidez corrente apenas do ano 2018
+dadosOrdLiquidez2018 <- dadosOrdLiquidez[dadosOrdLiquidez$ano == 2018,]
+
+# Banco de dados das empresas ordenadas por liquidez corrente apenas do ano 2019
+dadosOrdLiquidez2019 <- dadosOrdLiquidez[dadosOrdLiquidez$ano == 2019,]
+
+# Banco de dados das empresas ordenadas por liquidez corrente apenas do ano 2020
+dadosOrdLiquidez2020 <- dadosOrdLiquidez[dadosOrdLiquidez$ano == 2020,]
+
+# Três maiores em 2018
+tail(dadosOrdLiquidez2018, 3)
+
+# Três maiores em 2019
+tail(dadosOrdLiquidez2019, 3)
+
+# Três maiores em 2020
+tail(dadosOrdLiquidez2020, 3)
+
 ```
 
-### 4.02 NOMEANDO UM VETOR
+Encontramos as empresas GPAR3 e AFLT3 nos três anos da amostra. Então, temos o
+indicativo de que são empresas, de fato, com alta liquidez corrente consistente
+no tempo.
 
-Voc? pode dar um nome aos elementos de um vetor com a fun??o "names()" fun??o. Veja este exemplo:
+* Quanto seria a liquidez corrente de todo o período se as empresas que estão 
+entre as TOP 3 em todos os anos não estivessem na amostra?
 
 ```{r}
-algum_vetor <- c("Kleber Formiga", "Professor")
-names(algum_vetor) <- c("Nome", "Profissao")
-print(algum_vetor)
+
+# Retornamos ao Data Frame original e filtramos os dados sem as empresas GPAR3 e AFLT3
+# Usamos o operador de comparação %in% (Não está contido - !OBJETO %in% VETOR)
+dadosSemTop3 <- dados[!dados$cod %in% c("GPAR3", "AFLT3"),]
+
+# Calcular a média sem as TOP 3
+
+mean(dadosSemTop3$liqCorrente)
+
 ```
 
-Agora, vamos nomear os vetores de poquer e roleta. Antes de come?armos, ? necess?rio dizer que h? duas maneiras para nomear os vetores, a primeira ? dificultosa, a segunda, por sua vez, ? mais pr?tica, voc? vai gostar.
-
-#### Primeira
+A liquidez reduziu de 2,14 para 1,66. Uma redução de 22% na Liquidez, Vamos ver
+o coeficiente de variação!
 
 ```{r}
-# Nomes em poquer
 
-names(poquer_vetor) <- c("Segunda-feira", "Terca-feira","Quarta-feira","Quinta-feira","Sexta-feira")
-print(poquer_vetor)
+sd(dadosSemTop3$liqCorrente)/mean(dadosSemTop3$liqCorrente)*100
 
-# Nomes em roleta
-
-names(roleta_vetor) <- c("Segunda-feira", "Terca-feira","Quarta-feira","Quinta-feira","Sexta-feira")
-print(roleta_vetor)
 ```
 
-#### Segunda
+Removendo as TOP 3, o desvio-padrão reduz consideravelmente. O coeficiente de 
+variação passou para 61,82%. Então, seria prudente avaliar as empresas que estão
+entre as TOP 3 todos os anos para incorporar mais questionamentos sobre nossas
+análises, já que a presença delas amplia a variabilidade dos dados em torno da
+média quando avaliamos a liquidez corrente.
 
-Assim como voc? fez com seus retornos de p?quer e roleta, voc? tamb?m pode criar uma vari?vel que contenha os dias da semana. Dessa forma, voc? pode us?-la e reutiliz?-la.
+**3. Como se distribuiu a liquidez corrente no período coletado, por ano?**
 
-Vetor de dias:
+Essa resposta será dada com uso de gráficos.
 
-```{r}
-#  Vetor de dias
+```{r, fig.align = "center", fig.height = 5, fig.width = 6, out.width = "8.5in"}
+# Criando um frame para gráficos com 1 linha e 3 colunas (uma coluna para cada ano)
+par(mfrow = c(1,3))
 
-dias_vetor <- c("Segunda-feira", "Terca-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira")
-print(dias_vetor)
+# Gerando um boxplot
+boxplot(
+  # Definindo os dados para o ano de interesse no gráfico
+  dados$liqCorrente[dados$ano == 2018],
+  # Dando um título ao gráfico
+  main = "Liq Corrente 2018",
+  # Colocando o limite dos valores de Y entre 0 e 20 (padronizar entre todos os anos)
+  ylim = c(0,20),
+  # Definindo uma cor para a caixa do boxplot
+  col = "yellow")
 
-# Names em p?quer
+boxplot(
+  # Definindo os dados para o ano de interesse no gráfico
+  dados$liqCorrente[dados$ano == 2019],
+  # Dando um título ao gráfico
+  main = "Liq Corrente 2019",
+  # Colocando o limite dos valores de Y entre 0 e 20 (padronizar entre todos os anos)
+  ylim = c(0,20),
+  # Definindo uma cor para a caixa do boxplot
+  col = "yellow")
 
-names(poquer_vetor) <- dias_vetor
-print(poquer_vetor)
+# Vejam o mesmo código sem os comentários
+boxplot(
+  dados$liqCorrente[dados$ano == 2020],
+  main = "Liq Corrente 2020", ylim = c(0,20), col = "yellow")
 
-# Names em roleta
+# Retornando o frame de gráficos para receber um gráfico por vez
+par(mfrow = c(1,1))
 
-names(roleta_vetor) <- dias_vetor
-print(roleta_vetor)
 ```
 
-### 4.03 CALCULANDO O TOTAL
+A distribuição menos dispersa entre a liquidez corrente das empresas do segmento
+de energia elétrica ocorre em 2020, conforme podemos ver a distância entre o 
+primeiro e o terceiro quartis. A presença de outliers foi mais evidente em 2018
+e 2019. O ano de 2019 foi o mais disperso, apresentando maior intervalo interquartil
+Os valores medianos, por outro lado, não pareceram mudar muito entre os anos.
 
-Neste caso, voc? precisa entender qual foi o lucro ou preju?zo geral por dia da semana. O lucro di?rio total ? a soma do lucro/perda que voc? realiza no p?quer por dia e o lucro/perda que voc? realiza na roleta por dia. Observe a seguir:
+Assim, podemos dizer que algumas empresas apresentaram maior discrepância de
+liquidez corrente nos anos de 2018 e 2019, mas em 2020 a liquidez corrente das
+empresas, embora com alguns outliers, tiveram valores menos dispersos.
 
-```{r}
-total_dia <- poquer_vetor + roleta_vetor
-print(total_dia)
-```
 
-No entanto, parece que voc? teve uma mistura de dias bons e ruins. A fun??o "sum()" pode ajudar voc? a resolver esse problema. Ela calcula a soma de todos os elementos de um vetor. Veja abaixo:
+```{r, echo=FALSE}
 
-```{r}
-total_semana <- sum(poquer_vetor, roleta_vetor)
-print(total_semana)
-```
-
-### 4.04 SELECIONAR ELEMENTOS
-
-Nesta etapa, vamos imaginar que voc? deseja verificar quais s?o os melhores dias, como tamb?m os piores dias. Para fazer isso, h? duas maneiras. Veja abaixo:
-
-#### Melhores dias
-
-Para selecionar v?rios elementos de um vetor, voc? pode adicionar colchetes ao final dele. Voc? pode indicar entre par?nteses quais elementos devem ser selecionados. Por exemplo: suponha que voc? queira selecionar o primeiro e o quinto dia da semana: use o vetor c(1, 5) entre colchetes. Por exemplo, o c?digo abaixo seleciona o terceiro e o quinto elemento de poquer_vetor.
-
-```{r}
-melhores_poquer <- poquer_vetor[c(3,5)]
-melhores_roleta <- roleta_vetor[c(3,5)]
-melhor_total <- melhores_poquer + melhores_roleta
-
-melhor_total
-```
-
-#### Piores dias
-
-Outra maneira de abordar o exerc?cio anterior ? usar os nomes dos elementos vetoriais (segunda, ter?a, ...) em vez de suas posi??es num?ricas. Assim como voc? fez no exerc?cio anterior com n?meros, voc? tamb?m pode usar os nomes dos elementos para selecionar v?rios elementos, por exemplo:
-
-```{r}
-piores_poquer <- poquer_vetor[c("Terca-feira", "Quinta-feira")]
-piores_roleta <- roleta_vetor[c("Terca-feira", "Quinta-feira")]
-pior_total <- piores_poquer + piores_roleta
-
-pior_total
-```
-
-### 4.05 SELE??O POR COMPARA??O
-
-Utilizando operadores de compara??o, podemos abordar a quest?o anterior de maneira mais proativa.
-
-1.  Os operadores de compara??o (l?gicos) conhecidos por R s?o:
-
-###### \> Maior que
-
-###### \<= Menor igual a
-
-###### \< Menor que
-
-###### \>= Maior igual a
-
-###### == igual a
-
-###### != diferente de
-
-O bom de R ? que voc? pode usar esses operadores de compara??o com vetores. Por exemplo:
-
-```{r}
-c(4, 5, 6) > 5
-```
-
-Este comando testa todos os elementos do vetor. A condi??o declarada pelo operador de compara??o pode ser TRUE ou FALSE. Atrav?s desse princ?pio, verifique quais elementos de poquer_vetor e roleta_vetor s?o positivos (ou seja, \> 0) e atribua isso a um nome qualquer.
-
-```{r}
-qualquer_vetor <- poquer_vetor > 0
-
-print(qualquer_vetor)
-
-qualquer_vetor2 <- roleta_vetor > 0
-
-print(qualquer_vetor2)
-```
-
-```{r}
-# Atribuir
-minha_var <- 4
-
-# Imprimir
-print(minha_var)
-```
-
-### 3.02 EXEMPLO PR?TICO
-
-Suponha que voc? tenha uma cesta de frutas com cinco ma??s. Como analista de dados em treinamento, voc? deseja armazenar o n?mero de ma??s em uma vari?vel com o nome m_ma??s.
-
-```{r}
-m_macas <- 5
-```
-
-Cada cesta de frutas saborosa precisa de laranjas, ent?o voc? decide adicionar seis laranjas. Como analista de dados, seu reflexo ? criar imediatamente a vari?vel m_laranjas e atribuir o valor 6 a ela.
-
-```{r}
-m_laranjas <- 6
-```
-
-Em seguida, voc? deseja calcular quantas pe?as de frutas voc? tem no total. Nesse sentido, ? preciso armazenar os valores das ma?as e das laranjas em outro nome, por exemplo: "total_frutas".
-
-```{r}
-total_frutas <- m_macas + m_laranjas
-
-print(total_frutas)
-```
-
-Observe que o operador + trabalha com vari?veis num?ricas em R.
-
-\#\#\# 3.04 ALGUMAS FUN??ES
-
-A fun??o class() identifica o modelo de vari?vel. Veja abaixo:
-
-```{R}
-class(v_numerico)
-class(v_logica)
-class(v_caracter)
-```
-
-A fun??o rm() apaga o conte?do de uma vari?vel. Observe:
-
-```{r}
-monica <- 19
-print(monica)
-rm(monica)
-```
-
-A fun??o as.numeric() tem como finalidade transformar um caractere em um n?mero. Por exemplo:
-
-```{r}
-num <- "3"
-
-1 + as.numeric(num)
-2 + as.numeric(num)
-5 + as.numeric(num)
+knitr::knit_exit()
 ```
