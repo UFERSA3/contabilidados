@@ -67,7 +67,7 @@ Após mapear as fontes de dados disponíveis e confiáveis, serão direcionados 
 
 Com a compreensão das rotinas e dados a serem explorados, serão definidas as equipes para estruturação das bases de dados, tendo como objetivo inicial a sumarização e "clusterização" dos dados. Para fins de benchmark de coleta estão repositórios públicos como por exemplo, na Secretaria do Tesouro Nacional, IBGE, Federação das Indústrias do Rio de Janeiro (FIRJAN), Fundo Nacional de Educação, Fundo Nacional da Saúde, RAIS, CAGED, Comissão de Valores Mobiliários (CVM), Brasil Bolsa Balcão (B3), entre outras.
 
-A etapa seguinte consiste em calcular indicadores e/ou índices de gestão, contábil ou de sentimento, de forma a produzir informações individualizadas de entidades públicas e privadas, definindo o formato de divulgaçaõ dos dados (sumarizados ou microdados). Para essa etapa serão utilizados diversos softwares, tais como: R, Stata, Matlab, Power BI, Python e Excel. Nessa etapa se iniciam os treinamentos de alunos e professores para condução dos subprojetos, divididos por área de interesse a ser definida após tratamento dos dados. Ao final serão construídos os dicionários das bases de dados criadas e definidos os paineis para consulta de dados (dashboards) com o respectivo treinamento de alunos, professores e sociedade em geral.
+A etapa seguinte consiste em calcular indicadores e/ou índices de gestão, contábil ou de sentimento, de forma a produzir informações individualizadas de entidades públicas e privadas, definindo o formato de divulgação dos dados (sumarizados ou microdados). Para essa etapa serão utilizados diversos softwares, tais como: R, Stata, Matlab, Power BI, Python e Excel. Nessa etapa se iniciam os treinamentos de alunos e professores para condução dos subprojetos, divididos por área de interesse a ser definida após tratamento dos dados. Ao final serão construídos os dicionários das bases de dados criadas e definidos os painéis para consulta de dados (dashboards) com o respectivo treinamento de alunos, professores e sociedade em geral.
 
 **Mais informações** sobre o Projeto contabiliDados [**clique aqui**](dgp.cnpq.br/dgp/espelhogrupo/5876410881852665)
 
@@ -242,7 +242,7 @@ knitr::include_graphics('images/eco_screenerBasicoAcoes.png')
 O Economatica dispõe de várias de várias telas pré-formatadas. Vamos usar o
 screening pré-formatado "Básico". Nesse screening serão selecionadas as empresas
 que *negociam ações na B3* (Brasil, Bolsa, Balcão) e que *estejam ativas*. Basta
-escolhar a aba "Ações" e clicar no botão "ABRIR", conforme figura acima.
+escolher a aba "Ações" e clicar no botão "ABRIR", conforme figura acima.
 
 
 
@@ -265,7 +265,7 @@ knitr::include_graphics('images/eco_screenerSelecionaSegmento.png')
 Clica em "Dados Cadastrais" -> "Ações -> "Segmento Bovespa".
 
 Com essa sequência, será incluída uma coluna "Segmento Bovespa" na qual constarão
-o segumento de cada empresa selecionada no screening básico, conforme figura a
+o segmento de cada empresa selecionada no screening básico, conforme figura a
 seguir.
 
 **Passo 6:** Screening - Filtra Segmento
@@ -276,7 +276,7 @@ knitr::include_graphics('images/eco_inserirFiltro.png')
 
 Como a proposta é estudar empresas do setor elétrico, vamos filtrar apenas
 empresas do segmento "Energia Elétrica". Para isso, basta clicar com o botão
-direito do mouse no título da coluna "Segmento Bovespa" e escolhar a opção do
+direito do mouse no título da coluna "Segmento Bovespa" e escolher a opção do
 menu "Inserir filtro baseado nesta coluna". Aparecerá a seguinte tela:
 
 ```{r echo=FALSE, out.width='90%', fig.align='center'}
@@ -286,7 +286,7 @@ knitr::include_graphics('images/eco_aplicaFiltro.png')
 O primeiro procedimento nesta tela é clicar na opção "Mostrar apenas uma 
 classe por empresa (a de maior volume no último mês)". Esta opção faz com que
 seja apresentada apenas um código por empresa (o de maior de negociação no mês
-anterior). Como estamos coletando dados contábeis, essa opçao faz sentido, já
+anterior). Como estamos coletando dados contábeis, essa opção faz sentido, já
 que o ativo circulante da PETR3 é o mesmo que o da PETR4 em cada ano. Essa opção
 não faz sentido quando coletarmos dados referente a negociações, como preço e 
 volume, pois cada papel (PETR3 e PETR4, por exemplo) tem valores diferentes,
@@ -342,17 +342,17 @@ período estabelecido.
 
 **Passo 8:** Matrix - Configuração da conta
 
-Após configurada a coluna "Data", vamos configura a coluna da conta. Clique em
+Após configurada a coluna "Data", vamos configurar a coluna da conta. Clique em
 "Criar Coluna" para aparecer a tela abaixo:
 
 ```{r echo=FALSE, out.width='90%', fig.align='center'}
 knitr::include_graphics('images/eco_selecionaContaMatrix.png')
 ```
 
-A configuração consistem em escolher a conta desejada. Na figura acima estamos
+A configuração consiste em escolher a conta desejada. Na figura acima estamos
 selecionando a conta "Ativo Circulante", conforme essa sequência:
 
-clique em "demonsrativos financeiros" -> IndComBR -> Ativo Circulante
+clique em "demonstrativos financeiros" -> IndComBR -> Ativo Circulante
 
 Após clicar em "Ativo Circulante", aparecerá a tela abaixo:
 
@@ -413,9 +413,9 @@ knitr::include_graphics('images/eco_verExcel.png')
 ```
 
 É um arquivo cujas colunas são separadas por vírgulas. Então temos a coluna
-"Ativo" com os códigos da empresas (o texto <XBSP> vem na configuração do
+"Ativo" com os códigos das empresas (o texto <XBSP> vem na configuração do
 Economatica - será tratado no R), "Data" com os anos e mais duas colunas com
-Ativo Circulante e Passivo Circulante. Salve esse aquivo em uma pasta de fácil
+Ativo Circulante e Passivo Circulante. Salve esse arquivo em uma pasta de fácil
 identificação, pois finalizamos o processo de geração do banco de dados no
 Economatica e vamos importá-lo, tratá-lo e analisá-lo no R.
 
@@ -443,7 +443,7 @@ usar o windows por meio de seu prompt de comando ou por meio de sua interface
 gráfica?
 
 A resposta dificilmente será por meio de seu prompt de comando. Ao instalar o R,
-inicialmente não temos o ambiente de desenvimento ou IDE. Assim, instalamos, 
+inicialmente não temos o ambiente de desenvolvimento ou IDE. Assim, instalamos, 
 primeiramente, a interface gráfica para, somente depois, instalar sua IDE.
 Para saber mais sobre o R acesse ([www.r-project.org](https://www.r-project.org)).
 Com a IDE teremos disponíveis várias funcionalidades e facilidades como
@@ -675,11 +675,11 @@ ou instalar novos pacotes. O R já possui vários pacotes por padrão (chamamos 
 funções base). Neste treinamento usaremos apenas os pacotes base do R, portanto,
 não precisaremos instalar ou requerer qualquer pacote.
 
-* **Help** quem não precisa de uma help? É nessa aba que podemos fazer buscas
+* **Help** quem não precisa de um help? É nessa aba que podemos fazer buscas
 sobre ajudas nos pacotes. Na realidade, recomendamos que sejam observadas as
 documentações de cada pacote que usem.
 
-* **Viewer** Nesse local são aprensentadas tabelas e gráficos em formato HTML.
+* **Viewer** Nesse local são apresentadas tabelas e gráficos em formato HTML.
 
 
 ## Linguarem R no R Studio
@@ -726,7 +726,7 @@ criancas = 7 # usamos = para criar o objeto
 
 fatias <- pizzas * 8 # Usamos a multiplicação
 
-# vamos ver quantas fatias temos para as 7 criaças
+# vamos ver quantas fatias temos para as 7 crianças
 
 fatias
 
@@ -769,7 +769,7 @@ QUAL A IDADE MÉDIA DOS ALUNOS DA SALA? Seria tratada no R como valores inteiros
 mas seu resultado poderia ser um dado do tipo "numeric", já que a idade média
 poderia resultar em 4,5 anos. Os inteiros serão identificados no R como do tipo
 "**integer**". Importante frisar que, por padrão, qualquer número será considerado
-do tiplo "numeric" pelo R. O usuário precisará indicar que o dados é do tipo
+do tipo "numeric" pelo R. O usuário precisará indicar que o dado é do tipo
 inteiro.
 
 * **Booleanos** são dados lógicos que adotam valores verdadeiros (1) ou falsos (0).
@@ -890,7 +890,7 @@ mean(notasTurma) # Muito mais prático
 ```
 
 
-Agora que sabemos criar um novo objeto e entendeos o que faz a função c(),
+Agora que sabemos criar um novo objeto e entender o que faz a função c(),
 podemos expor outro tipo de variável: O fator.
 
 * **Fator** são dados relacionados a categorias. Facilita a sumarização de dados
@@ -932,7 +932,7 @@ No mundo real, coletamos dados para formar bancos de dados (dados primários) ou
 coletamos dados diretamente de fonte de terceiros (dados secundários). No projeto
 contabiliDados, normalmente utilizamos dados secundários, tendo como fonte o banco
 mundial, CVM, sites diversos (web scraping), dentre vários outros. Algumas
-pesquisas também são desenvolvida com aplicação de questionários ou entrevistas
+pesquisas também são desenvolvidas com aplicação de questionários ou entrevistas
 que geram bancos de dados primários. O importante é saber que trabalhamos mais com
 conjuntos de dados do que com dados individuais como nos exemplos anteriores.
 
@@ -945,7 +945,7 @@ knitr::include_graphics('images/excelPrecosMatriz.png')
 
 Suponha que esses são preços do final de cada mês (janeiro a junho) do ano de 
 2020. Observe que os dados que não estão em amarelo são todos numéricos e podem
-ser usados pelo usuários como uma matriz de valores. Então, apresentamos o nosso
+ser usados pelos usuários como uma matriz de valores. Então, apresentamos o nosso
 primeiro objeto do R que cuida de um conjunto de dados: A matriz.
 
 ## Matriz
@@ -1032,7 +1032,7 @@ knitr::include_graphics('images/dataframeExemplo.png')
 
 Temos a variável Ativo que corresponde ao código (string), a variável Data que
 corresponde ao ano da observação (factor ou integer ou numeric) e ativo circulante
-e passivo circulante que são variaveis numéricas (numeric). É com esse tipo de 
+e passivo circulante que são variáveis numéricas (numeric). É com esse tipo de 
 banco de dados que precisamos lidar rotineiramente.
 
 A manipulação de um Data Frame difere da matriz em alguns aspectos. Vamos a um
@@ -1047,8 +1047,8 @@ de repetição igual a 6.
 codigos <- c(rep("COD1", 6), rep("COD2", 6), rep("COD3", 6), rep("COD4", 6))
 ```
 
-Agora vamos criar o objeto mes para representar os meses. Nesse caso usamos a
-função "rep()" com o parâmetro de sequencia "1:6" para indicar os número de 1 a 6.
+Agora vamos criar o objeto "mes" para representar os meses. Nesse caso usamos a
+função "rep()" com o parâmetro de sequência "1:6" para indicar os número de 1 a 6.
 Trata-se de um vetor equivalente a c(1, 2, 3, 4, 5, 6). Em seguida colocamos o
 parâmetro 4 para indicar que esses números de 1 a 6, que representam os meses de
 janeiro a junho, serão usados 4 vezes (para as 4 empresas).
@@ -1081,7 +1081,7 @@ Agora criamos o objeto "dadosDataFrame" que será do tipo data.frame com a funç
 
 ```{r}
 
-# Criamos um data frame com a primeira coluna sendo codigos, a segund coluna
+# Criamos um data frame com a primeira coluna sendo codigos, a segunda coluna
 # sendo mes e a última coluna sendo precos que é igual ao objeto todosValores.
 dadosDataFrame <- data.frame(codigos, mes, precos = todosValores)
 
@@ -1191,7 +1191,7 @@ Agora vamos entender o que faz um operador de comparação:
 dadosDataFrame$precos <= 15
 ```
 
-Observe que as 6 primeiras obsevações tem valor "TRUE" e as demais valor "FALSE".
+Observe que as 6 primeiras observações tem valor "TRUE" e as demais valor "FALSE".
 As que possuem valor "TRUE" são as observações com preço menor ou igual a 15.
 
 Agora vejamos um caso em que esses valores são dispersos:
@@ -1334,7 +1334,7 @@ dados <- read.csv(
   )
 ```
 
-Vamos ver a nova esturutra com a função "str()" e seu tipo com a função "class()".
+Vamos ver a nova estrutura com a função "str()" e seu tipo com a função "class()".
 
 ```{r}
 str(dados)
@@ -1381,14 +1381,14 @@ str(dados)
 
 # PROBLEMA
 
-Criamos, utilizando a plataforma Economatica, uma banco de dados com o ativo
+Criamos, utilizando a plataforma Economatica, um banco de dados com o ativo
 circulante e o passivo circulante das empresas do segmento de energia elétrica. 
 O período de coleta foi de 2018 a 2020, anualmente.
 
 De posse do banco de dados temos que ter a **criatividade** (isso mesmo:
 **CRIATIVIDADE**) para usar esses dados em benefício de alguma informação útil
 para alguma tomada de decisão. Então, temos que ter a ciência de que não há uma
-regra de como um dado tenha que ser analisado. O que precisamos é enteder o
+regra de como um dado tenha que ser analisado. O que precisamos é entender o
 problema que pode ser resolvido com base naquele dado.
 
 Dessa forma, apresentamos alguns questionamentos para que possamos utilizar o
@@ -1500,9 +1500,9 @@ tail(dadosOrdLiquidez, 3)$cod
 
 ```
 
-Vimos que as três maiores liquidez são de GPAR3, e AFLT3 (2 vezes). Para ver
-as empresas com maior liquidez corrente por ano vamos para a próxima pergunta
-desta questão.
+Vimos que os três maiores índices de liquidez são de GPAR3, e AFLT3 (2 vezes).
+Para ver as empresas com maior liquidez corrente por ano vamos para a próxima 
+pergunta desta questão.
 
 * Tem alguma que esteve entre as TOP 3 em liquidez corrente nos 3 anos?
 
@@ -1615,3 +1615,7 @@ empresas, embora com alguns outliers, tiveram valores menos dispersos.
 
 knitr::knit_exit()
 ```
+
+# CONSIDERAÇÕES FINAIS
+
+
