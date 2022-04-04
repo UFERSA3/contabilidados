@@ -1610,12 +1610,45 @@ Assim, podemos dizer que algumas empresas apresentaram maior discrepância de
 liquidez corrente nos anos de 2018 e 2019, mas em 2020 a liquidez corrente das
 empresas, embora com alguns outliers, tiveram valores menos dispersos.
 
+\newpage
+
+# CONSIDERAÇÕES FINAIS
+
+O objetivo deste treinamento foi tornar o ambiente do R Studio mais acessível
+a novos usuários com o intuito estimular os alunos a utilizar ferramentas de 
+análise de dados em suas atividades profissionais e acadêmicas. Foram 
+apresentados conceitos e aplicações básicas sem exigir instalações de novos 
+pacotes ou programações que tornassem os códigos mais eficientes. Ainda assim, a
+assimilação desses conceitos ajudam a implementação de várias rotinas úteis ao
+processo decisório.
+
+Este aprendizado será complementado por meio de novas formas de **analisar**
+**e manipular dados**. Pacotes como a família tidyverse, xts, zoo e data.table 
+darão maior suporte nas atividades diárias de análise de dados. A **criação de**
+**funções** tornarão as atividades mais ágeis e eficientes. Revisar conceitos
+estatísticos e matemáticos ajudará na **criação de modelos** descritivos,
+preditivos ou prescritivos. Conhecimentos específicos como regressão linear, modelos
+lineares generalizados, clusterização, análise fatorial e séries temporais serão
+indispensáveis para melhorar nossa capacidade de extrair informações úteis dos dados disponíveis.
+
+O Projeto contabiliDados se propõe a transformar os dados disponíveis em
+informações úteis. Para isso, precisamos de mais adeptos a linguagens de programação
+e linguagem de negócios. Juntem-se a nós! Contate-nos pelo email 
+[contabilidados@ufersa.edu.br](contabilidados@ufersa.edu.br).
+
+&nbsp;
+
+&nbsp;
+
+Siga nosso Twitter: [\@contabilidados](https://twitter.com/contabilidados)
+
+Siga nosso canal no Youtube: [Projeto UFERSA3](https://www.youtube.com/c/ProjetoUfersa3)
+
+Siga nossa liga de mercado financeiro no instagram: [\@ufersa3](instagram.com/ufersa3)
+
 
 ```{r, echo=FALSE}
 
 knitr::knit_exit()
 ```
-
-# CONSIDERAÇÕES FINAIS
-
 
