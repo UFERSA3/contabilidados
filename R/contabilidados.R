@@ -745,9 +745,9 @@ cntdd.novos <-
         vifTest <- "Não há termos suficientes para avaliaçãoo de multicolinearidade"
       } else {
         vifTest <- paste("VIF médio:",
-                         formatC(mean(a), digits = 3, format = "f"),
+                         formatC(mean(car::vif(fit)), digits = 3, format = "f"),
                          "| VIF Máximo:", 
-                         formatC(max(a), digits = 3, format = "f"))
+                         formatC(max(car::vif(fit)), digits = 3, format = "f"))
       }
       
       testeadf = suppressMessages(suppressWarnings(adf.test(residuals(fit))))
@@ -791,5 +791,3 @@ cntdd.novos <-
     }
     
   )
-
-
