@@ -696,7 +696,99 @@ cntdd.novos <-
         
         return(resultado)
         
+      },
+    
+    diaglm=function(fit, DT){
+      
+      library(tseries)
+      library(gvlma)
+      library(car)
+      library(lmtest)
+      
+      # Bonferonni p-value for most extreme obs (H0 - não são outliers)
+      bonftst = car::outlierTest(fit)
+      pBONF = mean(bonftst$bonf.p)
+      res_bonf = ifelse(pBONF<=0.05,
+                        "Os resíduos são outliers - Teste Bonferronni:",
+                        "Os resíduos não são outliers - Teste Bonferronni:")
+      bonfTest <- paste(res_bonf, "p-value médio", formatC(pBONF, digits = 3, format = "f"))
+      
+      bptst = ncvTest(fit) # (H0 variancia do erro é constante - homocedasticidade)
+      pBP = bptst$p
+      res_bp = ifelse(pBP<=0.05,
+                      "A variancia do erro não é constante - heterocedasticidade - Teste Breusch-Pagan:",
+                      "A variancia do erro é constante - homocedasticidade - Teste Breusch-Pagan:")
+      bpTest <- paste(res_bp, "p-value", formatC(pBP, digits = 3, format = "f"))
+      
+      #White test
+      m <- fit; data <- DT
+      u2 <- m$residuals^2; y <- fitted(m); Ru2<- summary(lm(u2 ~ y + I(y^2)))$r.squared; LM <- nrow(data)*Ru2; pvaluewhite <- 1-pchisq(LM, 2);
+      res_white = ifelse(pvaluewhite<=0.05,
+                         "Há heterocedasticidade no modelo - Teste White:",
+                         "Não há heterocedasticidade no modelo - Teste White:")
+      whiteTest <- paste(res_white, "p-value", formatC(pvaluewhite, digits = 3, format = "f"))
+      
+      
+      mediaResid <- paste("Média dos resíduos: ",
+                          formatC(mean(residuals(fit)),
+                                  digits = 3, format = "f"))
+      
+      jbtst = jarque.bera.test(residuals(fit)) # (H0 os resíduos são normais)
+      pJB = jbtst$p.value
+      res_JB = ifelse(pJB<=0.05,
+                      "Os resíduos não possuem distribuição normal - Teste Jarque-Bera:",
+                      "Os resíduos possuem distribuição normal - Teste Jarque-Bera:")
+      jarqueBeraTest <- paste(res_JB, "p-value", formatC(pJB, digits = 3, format = "f"))
+      
+      
+      if(length(fit$coefficients)<=2){
+        vifTest <- "Não há termos suficientes para avaliaçãoo de multicolinearidade"
+      } else {
+        vifTest <- paste("VIF médio:",
+                         formatC(mean(a), digits = 3, format = "f"),
+                         "| VIF Máximo:", 
+                         formatC(max(a), digits = 3, format = "f"))
       }
+      
+      testeadf = suppressMessages(suppressWarnings(adf.test(residuals(fit))))
+      padf = testeadf$p.value
+      res_adf = ifelse(padf<=0.05,
+                       "Os resíduos são estacionarios a 5% - Teste ADF:",
+                       "Os resíduos possuem raiz unitária a 5% - Teste ADF:")
+      adfTest <- paste(res_adf, "p-value: ", formatC(padf, digits = 3, format = "f"))
+      
+      dwtst=durbinWatsonTest(fit) #(H0) os resíduos não são correlacionados (são independentes)
+      pdw = dwtst$p
+      res_dw = ifelse(pdw<=0.05,
+                      "Os resíduos são correlacionados - Teste Durbin-Watson:",
+                      "Os residuos não são correlacionados - Teste Durbin-Watson:")
+      dwTest <- paste(res_dw, "p-value:", formatC(pdw, digits = 3, format = "f"))
+      
+      bgtst=bgtest(fit) #(H0) os resíduos não são correlacionados (são independentes)
+      pbg = bgtst$p.value
+      res_bg = ifelse(pbg<=0.05,
+                      "Os resíduos são correlacionados - Teste Breusch-Godfrey:",
+                      "Os residuos não são correlacionados - Teste Breusch-Godfrey:")
+      bgTest <- paste(res_bg, "p-value:", formatC(pbg, digits = 3, format = "f"))
+      
+      resultado <-
+        data.frame(
+          Item = 1:9,
+          Teste = c(
+            "Outliers", "Homocedasticidade",
+            "Homocedasticidade", "Resíduos Médios", "Normalidade",
+            "Multicolinearidade", "Estacionariedade",
+            "Correlação", "Correlação"
+          ),
+          Resultado = c(
+            bonfTest, bpTest, whiteTest, mediaResid, jarqueBeraTest, vifTest,
+            adfTest, dwTest, bgTest
+          )
+        )
+      
+      return(sjPlot::tab_df(resultado, encoding = "latin-8"))
+      
+    }
     
   )
 
